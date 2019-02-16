@@ -45,7 +45,7 @@
     <Compile Include="IMainService.cs" />
     <Compile Include="OrderBindingModel.cs" />
     <Compile Include="OrderViewModel.cs" />
-    <Compile Include="ProductBindingModel.cs" />
+    <Compile Include="ComputerBindingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

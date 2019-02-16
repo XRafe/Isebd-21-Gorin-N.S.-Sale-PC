@@ -44,7 +44,7 @@
     <Compile Include="ClientServiceList.cs" />
     <Compile Include="DataListSingleton.cs" />
     <Compile Include="MainServiceList.cs" />
-    <Compile Include="ProductServiceList.cs" />
+    <Compile Include="ComputerServiceList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

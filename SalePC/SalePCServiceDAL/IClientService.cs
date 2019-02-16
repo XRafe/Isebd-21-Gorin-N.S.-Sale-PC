@@ -15,5 +15,6 @@ namespace SalePCServiceDAL.Interfaces
         void AddElement(ClientBindingModel model);
         void UpdElement(ClientBindingModel model);
         void DelElement(int id);
-    }
+    }
+
 }

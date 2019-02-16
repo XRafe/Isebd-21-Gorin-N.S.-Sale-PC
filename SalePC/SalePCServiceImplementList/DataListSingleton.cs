@@ -11,17 +11,17 @@ namespace SalePCServiceImplementList
     {
         private static DataListSingleton instance;
         public List<Client> Clients { get; set; }
-        public List<Component> Components { get; set; }
+        public List<Hardware> Hardwares { get; set; }
         public List<Order> Orders { get; set; }
-        public List<Product> Products { get; set; }
-        public List<ProductComponent> ProductComponents { get; set; }
+        public List<Computer> Computers { get; set; }
+        public List<ComputerHardware> ComputerHardware { get; set; }
         private DataListSingleton()
         {
             Clients = new List<Client>();
-            Components = new List<Component>();
+            Hardwares = new List<Hardware>();
             Orders = new List<Order>();
-            Products = new List<Product>();
-            ProductComponents = new List<ProductComponent>();
+            Computers = new List<Computer>();
+            ComputerHardware = new List<ComputerHardware>();
         }
         public static DataListSingleton GetInstance()
         {

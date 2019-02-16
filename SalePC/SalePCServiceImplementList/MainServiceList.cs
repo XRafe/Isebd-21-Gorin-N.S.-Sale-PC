@@ -31,12 +31,12 @@ namespace SalePCServiceImplementList.Implementations
                         break;
                     }
                 }
-                string productName = string.Empty;
-                for (int j = 0; j < source.Products.Count; ++j)
+                string ComputerName = string.Empty;
+                for (int j = 0; j < source.Computers.Count; ++j)
                 {
-                    if (source.Products[j].Id == source.Orders[i].ProductId)
+                    if (source.Computers[j].Id == source.Orders[i].ComputerId)
                     {
-                        productName = source.Products[j].ProductName;
+                        ComputerName = source.Computers[j].ComputerName;
                         break;
                     }
                 }
@@ -45,8 +45,8 @@ namespace SalePCServiceImplementList.Implementations
                     Id = source.Orders[i].Id,
                     ClientId = source.Orders[i].ClientId,
                     ClientFIO = clientFIO,
-                    ProductId = source.Orders[i].ProductId,
-                    ProductName = productName,
+                    ComputerId = source.Orders[i].ComputerId,
+                    ComputerName = ComputerName,
                     Count = source.Orders[i].Count,
                     Sum = source.Orders[i].Sum,
                     DateCreate = source.Orders[i].DateCreate.ToLongDateString(),
@@ -70,7 +70,7 @@ namespace SalePCServiceImplementList.Implementations
             {
                 Id = maxId + 1,
                 ClientId = model.ClientId,
-                ProductId = model.ProductId,
+                ComputerId = model.ComputerId,
                 DateCreate = DateTime.Now,
                 Count = model.Count,
                 Sum = model.Sum,

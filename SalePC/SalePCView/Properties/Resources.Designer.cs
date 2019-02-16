@@ -37,7 +37,7 @@ namespace SalePCView.Properties
         /// <summary>
         ///   Возврат кэшированного экземпляра ResourceManager, используемого этим классом.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        [global::System.HardwareModel.EditorBrowsableAttribute(global::System.HardwareModel.EditorBrowsableState.Advanced)]
         internal static global::System.Resources.ResourceManager ResourceManager
         {
             get
@@ -55,7 +55,7 @@ namespace SalePCView.Properties
         ///   Переопределяет свойство CurrentUICulture текущего потока для всех
         ///   подстановки ресурсов с помощью этого класса ресурсов со строгим типом.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        [global::System.HardwareModel.EditorBrowsableAttribute(global::System.HardwareModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture
         {
             get

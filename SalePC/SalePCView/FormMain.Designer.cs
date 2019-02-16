@@ -1,11 +1,11 @@
 ﻿namespace SalePCView
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Обязательная переменная конструктора.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private System.HardwareModel.IContainer Hardwares = null;
 
         /// <summary>
         /// Освободить все используемые ресурсы.
@@ -13,9 +13,9 @@
         /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (Hardwares != null))
             {
-                components.Dispose();
+                Hardwares.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -26,9 +26,9 @@
         /// Требуемый метод для поддержки конструктора — не изменяйте 
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeHardware()
         {
-            this.components = new System.ComponentModel.Container();
+            this.Hardwares = new System.HardwareModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "Form1";

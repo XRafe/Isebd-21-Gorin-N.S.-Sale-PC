@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SalePCServiceDAL.BindingModels
 {
-    public class ProductBindingModel
+    public class ComputerBindingModel
     {
         public int Id { get; set; }
-        public string ProductName { get; set; }
+        public string ComputerName { get; set; }
         public decimal Price { get; set; }
-        public List<ProductComponentBindingModel> ProductComponents { get; set; }
+        public List<ComputerHardwareBindingModel> ComputerHardware { get; set; }
     }
 }

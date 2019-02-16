@@ -5,12 +5,6 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePC", "SalePC\SalePC.csproj", "{A36AFC51-89A6-40B9-B9DD-E76E937B2217}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCServiceDAL", "SalePCServiceDAL\SalePCServiceDAL.csproj", "{5F405C00-6FFC-4B77-A248-303665A2414A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCServiceImplementList", "SalePCServiceImplementList\SalePCServiceImplementList.csproj", "{CF125D11-0DED-418A-AF27-FF90E4F50A16}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCView", "SalePCView\SalePCView.csproj", "{FB1920EE-A6D1-4726-8F18-CD156FDCA395}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,18 +15,6 @@ Global
 		{A36AFC51-89A6-40B9-B9DD-E76E937B2217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A36AFC51-89A6-40B9-B9DD-E76E937B2217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A36AFC51-89A6-40B9-B9DD-E76E937B2217}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F405C00-6FFC-4B77-A248-303665A2414A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F405C00-6FFC-4B77-A248-303665A2414A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F405C00-6FFC-4B77-A248-303665A2414A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F405C00-6FFC-4B77-A248-303665A2414A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF125D11-0DED-418A-AF27-FF90E4F50A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF125D11-0DED-418A-AF27-FF90E4F50A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF125D11-0DED-418A-AF27-FF90E4F50A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF125D11-0DED-418A-AF27-FF90E4F50A16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB1920EE-A6D1-4726-8F18-CD156FDCA395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB1920EE-A6D1-4726-8F18-CD156FDCA395}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB1920EE-A6D1-4726-8F18-CD156FDCA395}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB1920EE-A6D1-4726-8F18-CD156FDCA395}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
