@@ -19,24 +19,53 @@ namespace SalePCServiceImplementList
         }
         public List<OrderViewModel> GetList()
         {
-            List<OrderViewModel> result = source.Orders.Select(rec => new OrderViewModel
+            List<OrderViewModel> result = new List<OrderViewModel>();
+            for (int i = 0; i < source.Orders.Count; ++i)
             {
-                Id = rec.Id,
-                ClientId = rec.ClientId,
-                PCId = rec.PCId,
-                DateCreate = rec.DateCreate.ToLongDateString(),
-                DateImplement = rec.DateImplement?.ToLongDateString(),
-                Status = rec.Status.ToString(),
-                Count = rec.Count,
-                Sum = rec.Sum,
-                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id == rec.ClientId)?.ClientFIO,
-                PCName = source.PCs.FirstOrDefault(recP => recP.Id == rec.PCId)?.PCName,
-            }).ToList();
+                string clientFIO = string.Empty;
+                for (int j = 0; j < source.Clients.Count; ++j)
+                {
+                    if (source.Clients[j].Id == source.Orders[i].ClientId)
+                    {
+                        clientFIO = source.Clients[j].ClientFIO;
+                        break;
+                    }
+                }
+                string PCName = string.Empty;
+                for (int j = 0; j < source.PCs.Count; ++j)
+                {
+                    if (source.PCs[j].Id == source.Orders[i].PCId)
+                    {
+                        PCName = source.PCs[j].PCName;
+                        break;
+                    }
+                }
+                result.Add(new OrderViewModel
+                {
+                    Id = source.Orders[i].Id,
+                    ClientId = source.Orders[i].ClientId,
+                    ClientFIO = clientFIO,
+                    PCId = source.Orders[i].PCId,
+                    PCName = PCName,
+                    Count = source.Orders[i].Count,
+                    Sum = source.Orders[i].Sum,
+                    DateCreate = source.Orders[i].DateCreate.ToLongDateString(),
+                    DateImplement = source.Orders[i].DateImplement?.ToLongDateString(),
+                    Status = source.Orders[i].Status.ToString()
+                });
+            }
             return result;
         }
         public void CreateOrder(OrderBindingModel model)
         {
-            int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec => rec.Id) : 0;
+            int maxId = 0;
+            for (int i = 0; i < source.Orders.Count; ++i)
+            {
+                if (source.Orders[i].Id > maxId)
+                {
+                    maxId = source.Orders[i].Id;
+                }
+            }
             source.Orders.Add(new Order
             {
                 Id = maxId + 1,
@@ -50,64 +79,68 @@ namespace SalePCServiceImplementList
         }
         public void TakeOrderInWork(OrderBindingModel model)
         {
-            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            int index = -1;
+            for (int i = 0; i < source.Orders.Count; ++i)
+            {
+                if (source.Orders[i].Id == model.Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Принят)
+        if (source.Orders[index].Status != OrderStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            element.DateImplement = DateTime.Now;
-            element.Status = OrderStatus.Выполняется;
+            source.Orders[index].DateImplement = DateTime.Now;
+            source.Orders[index].Status = OrderStatus.Выполняется;
         }
         public void FinishOrder(OrderBindingModel model)
         {
-            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            int index = -1;
+            for (int i = 0; i < source.Orders.Count; ++i)
+            {
+                if (source.Orders[i].Id == model.Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Выполняется)
+            if (source.Orders[index].Status != OrderStatus.Выполняется)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-            element.Status = OrderStatus.Готов;
+            source.Orders[index].Status = OrderStatus.Готов;
         }
         public void PayOrder(OrderBindingModel model)
         {
-            Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            int index = -1;
+            for (int i = 0; i < source.Orders.Count; ++i)
+            {
+                if (source.Orders[i].Id == model.Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1)
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Готов)
+            if (source.Orders[index].Status != OrderStatus.Готов)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
-            element.Status = OrderStatus.Оплачен;
+            source.Orders[index].Status = OrderStatus.Оплачен;
         }
-        public void PutHardwareOnStock(StockHardwareBindingModel model)
-        {
-            StockHardware element = source.StockHardwares.FirstOrDefault(rec =>
-           rec.StockId == model.StockId && rec.HardwareId == model.HardwareId);
-            if (element != null)
-            {
-                element.Count += model.Count;
-            }
-            else
-            {
-                int maxId = source.StockHardwares.Count > 0 ?
-               source.StockHardwares.Max(rec => rec.Id) : 0;
-                source.StockHardwares.Add(new StockHardware
-                {
-                    Id = ++maxId,
-                    StockId = model.StockId,
-                    HardwareId = model.HardwareId,
-                    Count = model.Count
-                });
-            }
-        }
-    }
+    }
+
 }

@@ -14,6 +14,7 @@ namespace SalePCServiceDAL.Interfaces
         HardwareViewModel GetElement(int id);
         void AddElement(HardwareBindingModel model);
         void UpdElement(HardwareBindingModel model);
-        void DelElement(int id);
+        void DelElement(int id);
+
     }
 }
