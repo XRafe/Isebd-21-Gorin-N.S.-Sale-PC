@@ -30,7 +30,7 @@ namespace SalePCView
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<IClientService, ClientServiceList>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IStockService, StockServiceList>(new
+            currentContainer.RegisterType<IHardwareService, HardwareServiceList>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IPCService, PCServiceList>(new
            HierarchicalLifetimeManager());

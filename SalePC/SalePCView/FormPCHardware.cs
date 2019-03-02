@@ -20,9 +20,9 @@ namespace SalePCView
                 return model;
             }
         }
-        private readonly IStockService service;
+        private readonly IHardwareService service;
         private PCHardwareViewModel model;
-        public FormSalePCHardware(IStockService service)
+        public FormSalePCHardware(IHardwareService service)
         {
             InitializeComponent();
             this.service = service;
@@ -31,10 +31,10 @@ namespace SalePCView
         {
             try
             {
-                List<StockViewModel> list = service.GetList();
+                List<HardwareViewModel> list = service.GetList();
                 if (list != null)
                 {
-                    comboBoxHardware.DisplayMember = "StockName";
+                    comboBoxHardware.DisplayMember = "HardwareName";
                     comboBoxHardware.ValueMember = "Id";
                     comboBoxHardware.DataSource = list;
                     comboBoxHardware.SelectedItem = null;

@@ -43,12 +43,10 @@
   <ItemGroup>
     <Compile Include="ClientServiceList.cs" />
     <Compile Include="DataListSingleton.cs" />
+    <Compile Include="HardwareServiceList.cs" />
     <Compile Include="MainServiceList.cs" />
     <Compile Include="PCServiceList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stock.cs" />
-    <Compile Include="StockHardware.cs" />
-    <Compile Include="StockServiceList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SalePCServiceDAL\SalePCServiceDAL.csproj">

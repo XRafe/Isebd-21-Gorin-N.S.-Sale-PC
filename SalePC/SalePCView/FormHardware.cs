@@ -13,9 +13,9 @@ namespace SalePCView
         public new IUnityContainer Container { get; set; }
 
         public int Id { set { id = value; } }
-        private readonly IStockService service;
+        private readonly IHardwareService service;
         private int? id;
-        public FormHardware(IStockService service)
+        public FormHardware(IHardwareService service)
         {
             InitializeComponent();
             this.service = service;
@@ -27,10 +27,10 @@ namespace SalePCView
             {
                 try
                 {
-                    StockViewModel view = service.GetElement(id.Value);
+                    HardwareViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxHardwareName.Text = view.StockName;
+                        textBoxHardwareName.Text = view.HardwareName;
                     }
                 }
                 catch (Exception ex)
@@ -53,17 +53,17 @@ namespace SalePCView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new StockBindingModel
+                    service.UpdElement(new HardwareBindingModel
                     {
                         Id = id.Value,
-                        StockName = textBoxHardwareName.Text
+                        HardwareName = textBoxHardwareName.Text
                     });
                 }
                 else
                 {
-                    service.AddElement(new StockBindingModel
+                    service.AddElement(new HardwareBindingModel
                     {
-                        StockName = textBoxHardwareName.Text
+                        HardwareName = textBoxHardwareName.Text
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

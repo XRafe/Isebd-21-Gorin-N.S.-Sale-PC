@@ -17,8 +17,6 @@ namespace SalePCServiceImplementList
         public List<PC> PCs { get; set; }
         public List<PCHardwares> PCHardwares { get; set; }
 
-        public List<Stock> Stocks { get; set; }
-        public List<StockHardware> StockHardwares { get; set; }
 
 
         private DataListSingleton()
@@ -28,8 +26,6 @@ namespace SalePCServiceImplementList
             Orders = new List<Order>();
             PCs = new List<PC>();
             PCHardwares = new List<PCHardwares>();
-            Stocks = new List<Stock>();
-            StockHardwares = new List<StockHardware>();
         }
         public static DataListSingleton GetInstance()
         {

@@ -12,9 +12,9 @@ namespace SalePCView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly IStockService service;
+        private readonly IHardwareService service;
 
-        public FormHardwares(IStockService service)
+        public FormHardwares(IHardwareService service)
         {
             InitializeComponent();
             this.service = service;
@@ -28,7 +28,7 @@ namespace SalePCView
         {
             try
             {
-                List<StockViewModel> list = service.GetList();
+                List<HardwareViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.DataSource = list;

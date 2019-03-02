@@ -50,9 +50,9 @@
     <Compile Include="BindingModels\StockBindingModel.cs" />
     <Compile Include="BindingModels\StockHardwareBindingModel.cs" />
     <Compile Include="Interfaces\IClientService.cs" />
+    <Compile Include="Interfaces\IHardwareService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IPCService.cs" />
-    <Compile Include="Interfaces\IStockService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\HardwareViewModel.cs" />
