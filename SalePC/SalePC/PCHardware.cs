@@ -9,7 +9,7 @@ namespace SalePC
     /// <summary>
     /// Сколько компонентов, требуется при изготовлении изделия
     /// </summary>
-    public class PCHardware
+    public class PCHardwares
     {
         public int Id { get; set; }
         public int PCId { get; set; }

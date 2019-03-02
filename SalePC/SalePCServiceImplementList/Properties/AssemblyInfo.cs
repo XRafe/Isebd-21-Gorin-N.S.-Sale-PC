@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyComputer("SalePCServiceImplementList")]
+[assembly: AssemblyProduct("SalePCServiceImplementList")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("cf125d11-0ded-418a-af27-ff90e4f50a16")]
+[assembly: Guid("cc6e83ac-eb03-43aa-91bb-e5e6cdfd507c")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

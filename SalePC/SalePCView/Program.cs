@@ -1,9 +1,13 @@
 ﻿using SalePCServiceDAL.Interfaces;
-using SalePCServiceImplementList.Implementations;
+using SalePCServiceImplementList;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
+
 namespace SalePCView
 {
     static class Program
@@ -18,20 +22,21 @@ namespace SalePCView
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(container.Resolve<FormMain>());
+
         }
+
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<IClientService, ClientServiceList>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IHardwareService, HardwareServiceList>(new
+            currentContainer.RegisterType<IStockService, StockServiceList>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IComputerService, ComputerServiceList>(new
+            currentContainer.RegisterType<IPCService, PCServiceList>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceList>(new
            HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
-
 }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F405C00-6FFC-4B77-A248-303665A2414A}</ProjectGuid>
+    <ProjectGuid>{C5A5743D-28FE-497E-9EE3-425C92C1B1D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SalePCServiceDAL</RootNamespace>
@@ -41,12 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IClientService.cs" />
-    <Compile Include="IMainService.cs" />
-    <Compile Include="OrderBindingModel.cs" />
-    <Compile Include="OrderViewModel.cs" />
-    <Compile Include="ComputerBindingModel.cs" />
+    <Compile Include="BindingModels\ClientBindingModel.cs" />
+    <Compile Include="BindingModels\HardwareBindingModel.cs" />
+    <Compile Include="BindingModels\OrderBindingModel.cs" />
+    <Compile Include="BindingModels\OrderStatusBindingModel.cs" />
+    <Compile Include="BindingModels\PCBindingModel.cs" />
+    <Compile Include="BindingModels\PCHardwareBindingModel.cs" />
+    <Compile Include="BindingModels\StockBindingModel.cs" />
+    <Compile Include="BindingModels\StockHardwareBindingModel.cs" />
+    <Compile Include="Interfaces\IClientService.cs" />
+    <Compile Include="Interfaces\IMainService.cs" />
+    <Compile Include="Interfaces\IPCService.cs" />
+    <Compile Include="Interfaces\IStockService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\HardwareViewModel.cs" />
+    <Compile Include="ViewModels\OrderStatusViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\PCHardwareViewModel.cs" />
+    <Compile Include="ViewModels\PCViewModel.cs" />
+    <Compile Include="ViewModels\StockHardwareViewModel.cs" />
+    <Compile Include="ViewModels\StockViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SalePC\SalePC.csproj">
@@ -54,5 +69,6 @@
       <Name>SalePC</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

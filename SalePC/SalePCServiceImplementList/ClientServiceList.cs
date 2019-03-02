@@ -1,14 +1,14 @@
-﻿using SalePC;
+﻿using System;
+using SalePC;
 using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalePCServiceImplementList.Implementations
+namespace SalePCServiceImplementList
 {
     public class ClientServiceList : IClientService
     {
@@ -28,7 +28,8 @@ namespace SalePCServiceImplementList.Implementations
                     ClientFIO = source.Clients[i].ClientFIO
                 });
             }
-            return result;
+
+        return result;
         }
         public ClientViewModel GetElement(int id)
         {
@@ -89,7 +90,7 @@ namespace SalePCServiceImplementList.Implementations
         public void DelElement(int id)
         {
             for (int i = 0; i < source.Clients.Count; ++i)
-            {
+        {
                 if (source.Clients[i].Id == id)
                 {
                     source.Clients.RemoveAt(i);

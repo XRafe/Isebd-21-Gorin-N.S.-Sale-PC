@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CF125D11-0DED-418A-AF27-FF90E4F50A16}</ProjectGuid>
+    <ProjectGuid>{CC6E83AC-EB03-43AA-91BB-E5E6CDFD507C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SalePCServiceImplementList</RootNamespace>
@@ -44,12 +44,15 @@
     <Compile Include="ClientServiceList.cs" />
     <Compile Include="DataListSingleton.cs" />
     <Compile Include="MainServiceList.cs" />
-    <Compile Include="ComputerServiceList.cs" />
+    <Compile Include="PCServiceList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stock.cs" />
+    <Compile Include="StockHardware.cs" />
+    <Compile Include="StockServiceList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SalePCServiceDAL\SalePCServiceDAL.csproj">
-      <Project>{5f405c00-6ffc-4b77-a248-303665a2414a}</Project>
+      <Project>{c5a5743d-28fe-497e-9ee3-425c92c1b1d8}</Project>
       <Name>SalePCServiceDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SalePC\SalePC.csproj">

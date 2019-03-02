@@ -1,9 +1,9 @@
 ﻿using System;
+using SalePC;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SalePC;
 
 namespace SalePCServiceImplementList
 {
@@ -11,17 +11,25 @@ namespace SalePCServiceImplementList
     {
         private static DataListSingleton instance;
         public List<Client> Clients { get; set; }
+
         public List<Hardware> Hardwares { get; set; }
         public List<Order> Orders { get; set; }
-        public List<Computer> Computers { get; set; }
-        public List<ComputerHardware> ComputerHardware { get; set; }
+        public List<PC> PCs { get; set; }
+        public List<PCHardwares> PCHardwares { get; set; }
+
+        public List<Stock> Stocks { get; set; }
+        public List<StockHardware> StockHardwares { get; set; }
+
+
         private DataListSingleton()
         {
             Clients = new List<Client>();
             Hardwares = new List<Hardware>();
             Orders = new List<Order>();
-            Computers = new List<Computer>();
-            ComputerHardware = new List<ComputerHardware>();
+            PCs = new List<PC>();
+            PCHardwares = new List<PCHardwares>();
+            Stocks = new List<Stock>();
+            StockHardwares = new List<StockHardware>();
         }
         public static DataListSingleton GetInstance()
         {
@@ -31,5 +39,6 @@ namespace SalePCServiceImplementList
             }
             return instance;
         }
+
     }
 }
