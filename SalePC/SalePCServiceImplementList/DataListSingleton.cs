@@ -16,6 +16,8 @@ namespace SalePCServiceImplementList
         public List<Order> Orders { get; set; }
         public List<PC> PCs { get; set; }
         public List<PCHardwares> PCHardwares { get; set; }
+        public List<Stock> Stocks { get; set; }
+        public List<StockHardware> StockHardware { get; set; }
 
 
 
