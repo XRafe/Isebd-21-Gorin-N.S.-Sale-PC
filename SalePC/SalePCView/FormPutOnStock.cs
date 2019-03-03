@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
-using SalePCServiceDAL.ViewModels;using Unity;
+using SalePCServiceDAL.ViewModels;
+using Unity;
+
 
 namespace SalePCView
 {
@@ -28,6 +30,7 @@ namespace SalePCView
             this.serviceC = serviceC;
             this.serviceM = serviceM;
         }
+
         private void FormPutOnStock_Load(object sender, EventArgs e)
         {
             try
@@ -43,7 +46,7 @@ namespace SalePCView
                 List<StockViewModel> listS = serviceS.GetList();
                 if (listS != null)
                 {
-                comboBoxStock.DisplayMember = "StockName";
+                    comboBoxStock.DisplayMember = "StockName";
                     comboBoxStock.ValueMember = "Id";
                     comboBoxStock.DataSource = listS;
                     comboBoxStock.SelectedItem = null;
@@ -55,6 +58,7 @@ namespace SalePCView
                MessageBoxIcon.Error);
             }
         }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
@@ -65,7 +69,7 @@ namespace SalePCView
             }
             if (comboBoxHardware.SelectedValue == null)
             {
-                MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите комплектующие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
@@ -99,5 +103,7 @@ namespace SalePCView
             DialogResult = DialogResult.Cancel;
             Close();
         }
-    }
+
+    }
+
 }

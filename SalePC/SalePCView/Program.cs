@@ -36,6 +36,8 @@ namespace SalePCView
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceList>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IStockService, StockServiceList>(new
+           HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

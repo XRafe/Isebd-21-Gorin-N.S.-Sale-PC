@@ -24,18 +24,18 @@ namespace SalePCServiceImplementList
             {
                 Id = rec.Id,
                 StockName = rec.StockName,
-                StockHardwares = source.StockHardware
+                StockHardware = source.StockHardwares
             .Where(recPC => recPC.StockId == rec.Id)
-            .Select(recPC => new StockHardwareViewModel
-            {
-                Id = recPC.Id,
-                StockId = recPC.StockId,
-                HardwareId = recPC.HardwareId,
-                HardwareName = source.Hardwares
+           .Select(recPC => new StockHardwareViewModel
+           {
+               Id = recPC.Id,
+               StockId = recPC.StockId,
+               HardwareId = recPC.HardwareId,
+               HardwareName = source.Hardwares
             .FirstOrDefault(recC => recC.Id ==
            recPC.HardwareId)?.HardwareName,
-                Count = recPC.Count
-            })
+               Count = recPC.Count
+           })
            .ToList()
             })
             .ToList();
@@ -50,7 +50,7 @@ namespace SalePCServiceImplementList
                 {
                     Id = element.Id,
                     StockName = element.StockName,
-                    StockHardwares = source.StockHardware
+                    StockHardware = source.StockHardwares
                 .Where(recPC => recPC.StockId == element.Id)
                .Select(recPC => new StockHardwareViewModel
                {
@@ -104,7 +104,7 @@ namespace SalePCServiceImplementList
             if (element != null)
             {
                 // при удалении удаляем все записи о компонентах на удаляемом складе
-                source.StockHardware.RemoveAll(rec => rec.StockId == id);
+                source.StockHardwares.RemoveAll(rec => rec.StockId == id);
                 source.Stocks.Remove(element);
             }
             else

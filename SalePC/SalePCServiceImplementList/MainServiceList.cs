@@ -34,7 +34,8 @@ namespace SalePCServiceImplementList
                 PCName = source.PCs.FirstOrDefault(recP => recP.Id ==
                rec.PCId)?.PCName,
             }).ToList();
-            return result;
+            return result;
+
         }
         public void CreateOrder(OrderBindingModel model)
         {
@@ -48,7 +49,8 @@ namespace SalePCServiceImplementList
                 Count = model.Count,
                 Sum = model.Sum,
                 Status = OrderStatus.Принят
-            });
+            });
+
         }
         public void TakeOrderInWork(OrderBindingModel model)
         {
@@ -61,8 +63,46 @@ namespace SalePCServiceImplementList
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
+            var PCHardwares = source.PCHardwares.Where(rec => rec.PCId == element.PCId);
+            foreach (var PCHardware in PCHardwares)
+            {
+                int countOnStocks = source.StockHardwares
+                .Where(rec => rec.HardwareId ==
+               PCHardware.HardwareId)
+               .Sum(rec => rec.Count);
+                if (countOnStocks < PCHardware.Count * element.Count)
+                {
+                    var HardwareName = source.Hardwares.FirstOrDefault(rec => rec.Id ==
+                   PCHardware.HardwareId);
+                    throw new Exception("Не достаточно компонента " +
+                   HardwareName?.HardwareName + " требуется " + (PCHardware.Count * element.Count) +
+                   ", в наличии " + countOnStocks);
+                }
+            }
+            // списываем
+            foreach (var PCHardware in PCHardwares)
+            {
+                int countOnStocks = PCHardware.Count * element.Count;
+                var stockHardwares = source.StockHardwares.Where(rec => rec.HardwareId
+               == PCHardware.HardwareId);
+                foreach (var stockHardware in stockHardwares)
+                {
+                    // компонентов на одном слкаде может не хватать
+                    if (stockHardware.Count >= countOnStocks)
+                    {
+                        stockHardware.Count -= countOnStocks;
+                        break;
+                    }
+                    else
+                    {
+                        countOnStocks -= stockHardware.Count;
+                        stockHardware.Count = 0;
+                    }
+                }
+            }
             element.DateImplement = DateTime.Now;
-            element.Status = OrderStatus.Выполняется;
+            element.Status = OrderStatus.Выполняется;
+
         }
         public void FinishOrder(OrderBindingModel model)
         {
@@ -88,11 +128,12 @@ namespace SalePCServiceImplementList
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
-            element.Status = OrderStatus.Оплачен;
+            element.Status = OrderStatus.Оплачен;
+
         }
         public void PutHardwareOnStock(StockHardwareBindingModel model)
         {
-            StockHardware element = source.StockHardware.FirstOrDefault(rec =>
+            StockHardware element = source.StockHardwares.FirstOrDefault(rec =>
            rec.StockId == model.StockId && rec.HardwareId == model.HardwareId);
             if (element != null)
             {
@@ -100,9 +141,9 @@ namespace SalePCServiceImplementList
             }
             else
             {
-                int maxId = source.StockHardware.Count > 0 ?
-               source.StockHardware.Max(rec => rec.Id) : 0;
-                source.StockHardware.Add(new StockHardware
+                int maxId = source.StockHardwares.Count > 0 ?
+               source.StockHardwares.Max(rec => rec.Id) : 0;
+                source.StockHardwares.Add(new StockHardware
                 {
                     Id = ++maxId,
                     StockId = model.StockId,
@@ -110,7 +151,8 @@ namespace SalePCServiceImplementList
                     Count = model.Count
                 });
             }
-        }
+        }
+
     }
 
 }

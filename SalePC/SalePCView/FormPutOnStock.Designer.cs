@@ -96,6 +96,7 @@
             this.buttonSave.TabIndex = 6;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonCancel
             // 
@@ -105,6 +106,7 @@
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // FormPutOnStock
             // 
@@ -121,6 +123,7 @@
             this.Controls.Add(this.labelStock);
             this.Name = "FormPutOnStock";
             this.Text = "Пополнение склада";
+            this.Load += new System.EventHandler(this.FormPutOnStock_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

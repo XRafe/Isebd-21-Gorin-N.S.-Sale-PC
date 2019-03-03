@@ -29,8 +29,8 @@ namespace SalePCView
                     StockViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                     textBoxName.Text = view.StockName;
-                        dataGridView.DataSource = view.StockHardwares;
+                        textBoxName.Text = view.StockName;
+                        dataGridView.DataSource = view.StockHardware;
                         dataGridView.Columns[0].Visible = false;
                         dataGridView.Columns[1].Visible = false;
                         dataGridView.Columns[2].Visible = false;
@@ -45,7 +45,8 @@ namespace SalePCView
                 }
             }
         }
-        private void buttonSave_Click(object sender, EventArgs e)
+
+        private void buttonSave_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
@@ -81,11 +82,12 @@ namespace SalePCView
                MessageBoxIcon.Error);
             }
         }
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void ButtonCancel_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
+
     }
 
 }

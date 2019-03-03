@@ -15,5 +15,6 @@ namespace SalePCServiceDAL.Interfaces
         void AddElement(StockBindingModel model);
         void UpdElement(StockBindingModel model);
         void DelElement(int id);
-    }
+    }
+
 }

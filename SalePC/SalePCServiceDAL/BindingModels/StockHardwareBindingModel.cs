@@ -12,5 +12,6 @@ namespace SalePCServiceDAL.BindingModels
         public int StockId { get; set; }
         public int HardwareId { get; set; }
         public int Count { get; set; }
-    }
+    }
+
 }

@@ -31,9 +31,9 @@
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.groupBoxHardware = new System.Windows.Forms.GroupBox();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.groupBoxHardware.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -64,6 +64,14 @@
             this.groupBoxHardware.TabStop = false;
             this.groupBoxHardware.Text = "Комплектующие";
             // 
+            // dataGridView
+            // 
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Location = new System.Drawing.Point(7, 20);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(317, 187);
+            this.dataGridView.TabIndex = 0;
+            // 
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(176, 258);
@@ -72,6 +80,7 @@
             this.buttonSave.TabIndex = 3;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click_1);
             // 
             // buttonCancel
             // 
@@ -81,14 +90,7 @@
             this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(7, 20);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(317, 187);
-            this.dataGridView.TabIndex = 0;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click_1);
             // 
             // FormStock
             // 
@@ -102,6 +104,7 @@
             this.Controls.Add(this.labelName);
             this.Name = "FormStock";
             this.Text = "Склад";
+            this.Load += new System.EventHandler(this.FormStock_Load);
             this.groupBoxHardware.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
