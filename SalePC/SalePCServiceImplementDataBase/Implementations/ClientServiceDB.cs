@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using SalePC;
 using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
-using SalePCServiceDAL.ViewModels;
+using SalePCServiceDAL.ViewModels;
+
 
 namespace SalePCServiceImplementDataBase.Implementations
 {

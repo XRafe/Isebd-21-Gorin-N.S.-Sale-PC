@@ -13,7 +13,7 @@ namespace SalePCServiceImplementDataBase.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201903160528390_FirstMigration"; }
+            get { return "201903292243235_FirstMigration"; }
         }
         
         string IMigrationMetadata.Source

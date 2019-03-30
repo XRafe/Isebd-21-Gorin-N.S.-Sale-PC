@@ -7,6 +7,8 @@ using SalePC;
 using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
+using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 
 namespace SalePCServiceImplementDataBase.Implementations
 {
@@ -68,8 +70,7 @@ namespace SalePCServiceImplementDataBase.Implementations
                     {
                         throw new Exception("Заказ не в статусе \"Принят\"");
                     }
-                    var PCHardwares = context.PCHardwares.Include(rec =>
-                    rec.Hardware).Where(rec => rec.PCId == element.PCId);
+                    var PCHardwares = context.PCHardwares.Include(rec => rec.Hardware).Where(rec => rec.PCId == element.PCId);
                     // списываем
                     foreach (var PCHardware in PCHardwares)
                     {

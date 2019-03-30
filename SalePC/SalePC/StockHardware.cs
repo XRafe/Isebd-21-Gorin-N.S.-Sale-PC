@@ -18,6 +18,8 @@ namespace SalePC
         public int HardwareId { get; set; }
         [Required]
         public int Count { get; set; }
+        public virtual Hardware Hardware { get; set; }
+        public virtual PC PC { get; set; }
 
     }
 }

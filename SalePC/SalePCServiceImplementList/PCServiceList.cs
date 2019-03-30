@@ -104,7 +104,8 @@ model.PCName);
                 HardwareId = groupHardware.HardwareId,
                     Count = groupHardware.Count
                 });
-            }
+            }
+
         }
         public void UpdElement(PCBindingModel model)
         {
@@ -176,7 +177,8 @@ model.PCName);
             else
             {
                 throw new Exception("Элемент не найден");
-            }
+            }
+
         }
     }
 
