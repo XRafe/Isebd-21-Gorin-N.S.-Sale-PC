@@ -15,6 +15,5 @@ namespace SalePC
         public string ClientFIO { get; set; }
         [ForeignKey("ClientId")]
         public virtual List<Order> Orders { get; set; }
-        public virtual List<PC> PCs { get; set; }
     }
 }
