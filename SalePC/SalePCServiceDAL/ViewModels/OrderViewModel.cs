@@ -17,6 +17,7 @@ namespace SalePCServiceDAL.ViewModels
         public decimal Sum { get; set; }
         public string Status { get; set; }
         public string DateCreate { get; set; }
-        public string DateImplement { get; set; }
+        public string DateImplement { get; set; }
+
     }
 }

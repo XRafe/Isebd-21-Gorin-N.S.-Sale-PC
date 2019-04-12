@@ -152,6 +152,12 @@
     <Compile Include="FormStocks.Designer.cs">
       <DependentUpon>FormStocks.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStocksLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStocksLoad.Designer.cs">
+      <DependentUpon>FormStocksLoad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormPC.resx">
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStocks.resx">
       <DependentUpon>FormStocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStocksLoad.resx">
+      <DependentUpon>FormStocksLoad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
