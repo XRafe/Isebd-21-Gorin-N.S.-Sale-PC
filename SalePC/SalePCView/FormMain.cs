@@ -133,6 +133,14 @@ namespace SalePCView
             form.ShowDialog();
         }
 
+
+
+        private void загруженностьСкладовToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStocksLoad>();
+            form.ShowDialog();
+        }
+
         private void прайсИзделийToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog
@@ -157,16 +165,11 @@ namespace SalePCView
                 }
             }
         }
-        private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs
-       e)
-        {
-            var form = Container.Resolve<FormStocksLoad>();
-        form.ShowDialog();
-        }
+
         private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormClientOrders>();
             form.ShowDialog();
-        }
+        }
     }
 }

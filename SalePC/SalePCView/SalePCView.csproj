@@ -237,7 +237,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="FormClientOrders.resx">
       <DependentUpon>FormClientOrders.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,10 +293,6 @@
     <ProjectReference Include="..\SalePCServiceImplementDataBase\SalePCServiceImplementDataBase.csproj">
       <Project>{59285dba-aed2-49be-a85b-cb477aed5456}</Project>
       <Name>SalePCServiceImplementDataBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SalePCServiceImplementList\SalePCServiceImplementList.csproj">
-      <Project>{cc6e83ac-eb03-43aa-91bb-e5e6cdfd507c}</Project>
-      <Name>SalePCServiceImplementList</Name>
     </ProjectReference>
     <ProjectReference Include="..\SalePC\SalePC.csproj">
       <Project>{a36afc51-89a6-40b9-b9dd-e76e937b2217}</Project>
