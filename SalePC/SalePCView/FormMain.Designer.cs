@@ -189,18 +189,21 @@
             this.прайсИзделийToolStripMenuItem.Name = "прайсИзделийToolStripMenuItem";
             this.прайсИзделийToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.прайсИзделийToolStripMenuItem.Text = "Прайс изделий";
+            this.прайсИзделийToolStripMenuItem.Click += new System.EventHandler(this.прайсИзделийToolStripMenuItem_Click);
             // 
             // загруженностьСкладовToolStripMenuItem
             // 
             this.загруженностьСкладовToolStripMenuItem.Name = "загруженностьСкладовToolStripMenuItem";
             this.загруженностьСкладовToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.загруженностьСкладовToolStripMenuItem.Text = "Загруженность складов";
+            this.загруженностьСкладовToolStripMenuItem.Click += new System.EventHandler(this.загруженностьСкладовToolStripMenuItem_Click);
             // 
             // заказыКлиентовToolStripMenuItem
             // 
             this.заказыКлиентовToolStripMenuItem.Name = "заказыКлиентовToolStripMenuItem";
             this.заказыКлиентовToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.заказыКлиентовToolStripMenuItem.Text = "Заказы клиентов";
+            this.заказыКлиентовToolStripMenuItem.Click += new System.EventHandler(this.заказыКлиентовToolStripMenuItem_Click);
             // 
             // FormMain
             // 

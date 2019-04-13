@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SalePCServiceDAL.BindingModels;
-using SalePCServiceDAL.ViewModels;
+using SalePCServiceDAL.ViewModels;
+
 
 namespace SalePCServiceDAL.Interfaces
 {
@@ -15,5 +16,6 @@ namespace SalePCServiceDAL.Interfaces
         void SaveStocksLoad(ReportBindingModel model);
         List<ClientOrdersModel> GetClientOrders(ReportBindingModel model);
         void SaveClientOrders(ReportBindingModel model);
-    }
+    }
+
 }
