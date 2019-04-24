@@ -1,49 +1,32 @@
 ﻿using SalePCServiceDAL.BindingModels;
-using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
-
 
 namespace SalePCView
 {
     public partial class FormCreateOrder : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IClientService serviceC;
-        private readonly IPCService serviceSalePC;
-        private readonly IMainService serviceM;
-        public FormCreateOrder(IClientService serviceC, IPCService serviceSalePC,
-        IMainService serviceM)
+        public FormCreateOrder()
         {
             InitializeComponent();
-            this.serviceC = serviceC;
-            this.serviceSalePC = serviceSalePC;
-            this.serviceM = serviceM;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ClientViewModel> listC = serviceC.GetList();
-                if (listC != null)
-                {
-                    comboBoxClient.DisplayMember = "ClientFIO";
-                    comboBoxClient.ValueMember = "Id";
-                    comboBoxClient.DataSource = listC;
-                    comboBoxClient.SelectedItem = null;
-                }
-                List<PCViewModel> listSalePC = serviceSalePC.GetList();
-                if (listSalePC != null)
-                {
-                    comboBoxSalePC.DisplayMember = "PCName";
-                    comboBoxSalePC.ValueMember = "Id";
-                    comboBoxSalePC.DataSource = listSalePC;
-                    comboBoxSalePC.SelectedItem = null;
-                }
+                List<ClientViewModel> listC = APIClient.GetRequest<List<ClientViewModel>>("api/Client/GetList");
+                comboBoxClient.DisplayMember = "ClientFIO";
+                comboBoxClient.ValueMember = "Id";
+                comboBoxClient.DataSource = listC;
+                comboBoxClient.SelectedItem = null;
+
+                List<PCViewModel> listPC = APIClient.GetRequest<List<PCViewModel>>("api/PC/GetList");
+                comboBoxSalePC.DisplayMember = "PCName";
+                comboBoxSalePC.ValueMember = "Id";
+                comboBoxSalePC.DataSource = listPC;
+                comboBoxSalePC.SelectedItem = null;
             }
             catch (Exception ex)
             {
@@ -59,9 +42,9 @@ namespace SalePCView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxSalePC.SelectedValue);
-                    PCViewModel SalePC = serviceSalePC.GetElement(id);
+                    PCViewModel PC = APIClient.GetRequest<PCViewModel>("api/PC/Get/" + id);
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * SalePC.Price).ToString();
+                    textBoxSum.Text = (count * PC.Price).ToString();
                 }
                 catch (Exception ex)
                 {
@@ -74,7 +57,7 @@ namespace SalePCView
         {
             CalcSum();
         }
-        private void comboBoxSalePC_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxPC_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -82,25 +65,26 @@ namespace SalePCView
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
-                MessageBox.Show("Заполните поле количество", "Ошибка",
+                MessageBox.Show("Заполните поле Количество", "Ошибка",
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (comboBoxClient.SelectedValue == null)
             {
-                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите заказчика", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
             if (comboBoxSalePC.SelectedValue == null)
             {
-                MessageBox.Show("Выберите компьютер", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите консерву", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                serviceM.CreateOrder(new OrderBindingModel
+                APIClient.PostRequest<OrderBindingModel,
+                bool>("api/Client/UpdElement", new OrderBindingModel
                 {
                     ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     PCId = Convert.ToInt32(comboBoxSalePC.SelectedValue),

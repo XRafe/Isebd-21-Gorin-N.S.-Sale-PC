@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APIClient.cs" />
     <Compile Include="FormPC.cs">
       <SubType>Form</SubType>
     </Compile>

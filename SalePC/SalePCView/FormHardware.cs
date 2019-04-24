@@ -3,22 +3,17 @@ using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System;
 using System.Windows.Forms;
-using Unity;
 
 namespace SalePCView
 {
     public partial class FormHardware : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
 
         public int Id { set { id = value; } }
-        private readonly IHardwareService service;
         private int? id;
-        public FormHardware(IHardwareService service)
+        public FormHardware()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormHardware_Load(object sender, EventArgs e)
@@ -27,11 +22,9 @@ namespace SalePCView
             {
                 try
                 {
-                    HardwareViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxHardwareName.Text = view.HardwareName;
-                    }
+                    HardwareViewModel view = APIClient.GetRequest<HardwareViewModel>("api/Hardware/Get/" + id.Value);
+                    textBoxHardwareName.Text = view.HardwareName;
+
                 }
                 catch (Exception ex)
                 {
@@ -45,7 +38,7 @@ namespace SalePCView
         {
             if (string.IsNullOrEmpty(textBoxHardwareName.Text))
             {
-                MessageBox.Show("Заполните название запчасти", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Заполните название ингредиента", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
@@ -53,7 +46,8 @@ namespace SalePCView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new HardwareBindingModel
+                    APIClient.PostRequest<HardwareBindingModel,
+                    bool>("api/Hardware/UpdElement", new HardwareBindingModel
                     {
                         Id = id.Value,
                         HardwareName = textBoxHardwareName.Text
@@ -61,7 +55,7 @@ namespace SalePCView
                 }
                 else
                 {
-                    service.AddElement(new HardwareBindingModel
+                    APIClient.PostRequest<HardwareBindingModel, bool>("api/Hardware/AddElement", new HardwareBindingModel
                     {
                         HardwareName = textBoxHardwareName.Text
                     });

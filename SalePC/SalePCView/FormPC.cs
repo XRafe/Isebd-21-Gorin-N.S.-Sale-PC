@@ -4,38 +4,30 @@ using SalePCServiceDAL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
 
 
 namespace SalePCView
 {
     public partial class FormPC : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IPCService service;
         private int? id;
         private List<PCHardwareViewModel> PCHardwares;
-        public FormPC(IPCService service)
+        public FormPC()
         {
             InitializeComponent();
-            this.service = service;
         }
-        private void FormSalePC_Load(object sender, EventArgs e)
+        private void FormPC_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    PCViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxName.Text = view.PCName;
-                        textBoxPrice.Text = view.Price.ToString();
-                        PCHardwares = view.PCHardwares;
-                        LoadData();
-                    }
+                    PCViewModel view = APIClient.GetRequest<PCViewModel>("api/PC/Get/" + id.Value);
+                    textBoxName.Text = view.PCName;
+                    textBoxPrice.Text = view.Price.ToString();
+                    PCHardwares = view.PCHardwares;
+                    LoadData();
                 }
                 catch (Exception ex)
                 {
@@ -71,7 +63,7 @@ namespace SalePCView
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormSalePCHardware>();
+            var form = new FormPCHardware();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (form.Model != null)
@@ -89,7 +81,7 @@ namespace SalePCView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormSalePCHardware>();
+                var form = new FormPCHardware();
                 form.Model =
                PCHardwares[dataGridView.SelectedRows[0].Cells[0].RowIndex];
                 if (form.ShowDialog() == DialogResult.OK)
@@ -109,7 +101,6 @@ namespace SalePCView
                 {
                     try
                     {
-
                         PCHardwares.RemoveAt(dataGridView.SelectedRows[0].Cells[0].RowIndex);
                     }
                     catch (Exception ex)
@@ -141,16 +132,16 @@ namespace SalePCView
             }
             if (PCHardwares == null || PCHardwares.Count == 0)
             {
-                MessageBox.Show("Заполните комплектующие", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Заполните ингредиенты", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                List<PCHardwareBindingModel> SalePCHardwareBM = new List<PCHardwareBindingModel>();
+                List<PCHardwareBindingModel> PCHardwareBM = new List<PCHardwareBindingModel>();
                 for (int i = 0; i < PCHardwares.Count; ++i)
                 {
-                    SalePCHardwareBM.Add(new PCHardwareBindingModel
+                    PCHardwareBM.Add(new PCHardwareBindingModel
                     {
                         Id = PCHardwares[i].Id,
                         PCId = PCHardwares[i].PCId,
@@ -160,21 +151,22 @@ namespace SalePCView
                 }
                 if (id.HasValue)
                 {
-                    service.UpdElement(new PCBindingModel
+                    APIClient.PostRequest<PCBindingModel,
+                    bool>("api/PC/UpdElement", new PCBindingModel
                     {
                         Id = id.Value,
                         PCName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),
-                        PCHardwares = SalePCHardwareBM
+                        PCHardwares = PCHardwareBM
                     });
                 }
                 else
                 {
-                    service.AddElement(new PCBindingModel
+                    APIClient.PostRequest<PCBindingModel, bool>("api/PC/AddElement", new PCBindingModel
                     {
                         PCName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),
-                        PCHardwares = SalePCHardwareBM
+                        PCHardwares = PCHardwareBM
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

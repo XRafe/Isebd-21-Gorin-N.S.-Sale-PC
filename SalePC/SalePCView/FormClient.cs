@@ -1,38 +1,26 @@
 ﻿using SalePCServiceDAL.BindingModels;
-using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System;
 using System.Windows.Forms;
-using Unity;
-
-
 namespace SalePCView
 {
     public partial class FormClient : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
-        private readonly IClientService service;
         private int? id;
-        public FormClient(IClientService service)
+        public FormClient()
         {
             InitializeComponent();
-            this.service = service;
         }
-
         private void FormClient_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
                 try
                 {
-                    ClientViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxFIO.Text = view.ClientFIO;
-                    }
+                    ClientViewModel client =
+                   APIClient.GetRequest<ClientViewModel>("api/Client/Get/" + id.Value);
+                    textBoxFIO.Text = client.ClientFIO;
                 }
                 catch (Exception ex)
                 {
@@ -41,7 +29,6 @@ namespace SalePCView
                 }
             }
         }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxFIO.Text))
@@ -54,18 +41,20 @@ namespace SalePCView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new ClientBindingModel
-                    {
-                        Id = id.Value,
-                        ClientFIO = textBoxFIO.Text
-                    });
+                    APIClient.PostRequest<ClientBindingModel,
+                   bool>("api/Client/UpdElement", new ClientBindingModel
+                   {
+                       Id = id.Value,
+                       ClientFIO = textBoxFIO.Text
+                   });
                 }
                 else
                 {
-                    service.AddElement(new ClientBindingModel
-                    {
-                        ClientFIO = textBoxFIO.Text
-                    });
+                    APIClient.PostRequest<ClientBindingModel,
+                   bool>("api/Client/AddElement", new ClientBindingModel
+                   {
+                       ClientFIO = textBoxFIO.Text
+                   });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -78,11 +67,10 @@ namespace SalePCView
                MessageBoxIcon.Error);
             }
         }
-
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
     }
-}
+}

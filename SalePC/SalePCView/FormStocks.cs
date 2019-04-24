@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System.Windows.Forms;
-using Unity;
+using SalePCServiceDAL.BindingModels;
 
 namespace SalePCView
 {
     public partial class FormStocks : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IStockService service;
-
-        public FormStocks(IStockService service)
+        public FormStocks()
         {
             InitializeComponent();
-            this.service = service;
         }
-
-        private void FormStocks_Load_1(object sender, EventArgs e)
+        private void FormStocks_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -28,7 +21,8 @@ namespace SalePCView
         {
             try
             {
-                List<StockViewModel> list = service.GetList();
+                List<StockViewModel> list =
+                    APIClient.GetRequest<List<StockViewModel>>("api/Stock/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -45,11 +39,11 @@ namespace SalePCView
         }
 
 
-        private void buttonUpd_Click_1(object sender, EventArgs e)
+        private void buttonUpd_Click(object sender, EventArgs e)
         {
             LoadData();
         }
-        private void buttonDel_Click_1(object sender, EventArgs e)
+        private void buttonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -60,7 +54,8 @@ namespace SalePCView
                    Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<StockBindingModel,
+                        bool>("api/Stock/DelElement", new StockBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -74,19 +69,21 @@ namespace SalePCView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormStock>();
+            var form = new FormStock();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
             }
         }
 
-        private void buttonChange_Click_1(object sender, EventArgs e)
+        private void buttonChange_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormStock>();
-                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                var form = new FormStock()
+                {
+                    Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value)
+                };
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();

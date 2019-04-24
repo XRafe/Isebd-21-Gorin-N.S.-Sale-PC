@@ -54,7 +54,7 @@
             this.buttonChange.TabIndex = 1;
             this.buttonChange.Text = "Изменить";
             this.buttonChange.UseVisualStyleBackColor = true;
-            this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click_1);
+            this.buttonChange.Click += new System.EventHandler(this.buttonChange_Click);
             // 
             // buttonDel
             // 
@@ -64,7 +64,7 @@
             this.buttonDel.TabIndex = 2;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
-            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click_1);
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // buttonUpd
             // 
@@ -74,7 +74,7 @@
             this.buttonUpd.TabIndex = 3;
             this.buttonUpd.Text = "Обновить";
             this.buttonUpd.UseVisualStyleBackColor = true;
-            this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click_1);
+            this.buttonUpd.Click += new System.EventHandler(this.buttonUpd_Click);
             // 
             // dataGridView
             // 
@@ -96,7 +96,7 @@
             this.Controls.Add(this.buttonAdd);
             this.Name = "FormStocks";
             this.Text = "Склады";
-            this.Load += new System.EventHandler(this.FormStocks_Load_1);
+            this.Load += new System.EventHandler(this.FormStocks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

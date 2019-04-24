@@ -194,7 +194,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormPC";
             this.Text = "Компьютер";
-            this.Load += new System.EventHandler(this.FormSalePC_Load);
+            this.Load += new System.EventHandler(this.FormPC_Load);
             this.groupBoxHardwares.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifetimeStrategyBindingSource)).EndInit();

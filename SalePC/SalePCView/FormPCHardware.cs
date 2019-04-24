@@ -3,15 +3,11 @@ using SalePCServiceDAL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
-
 
 namespace SalePCView
 {
-    public partial class FormSalePCHardware : Form
+    public partial class FormPCHardware : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public PCHardwareViewModel Model
         {
             set { model = value; }
@@ -20,18 +16,17 @@ namespace SalePCView
                 return model;
             }
         }
-        private readonly IHardwareService service;
         private PCHardwareViewModel model;
-        public FormSalePCHardware(IHardwareService service)
+
+        public FormPCHardware()
         {
             InitializeComponent();
-            this.service = service;
         }
-        private void FormSalePCHardware_Load(object sender, EventArgs e)
+        private void FormPCHardware_Load(object sender, EventArgs e)
         {
             try
             {
-                List<HardwareViewModel> list = service.GetList();
+                List<HardwareViewModel> list = APIClient.GetRequest<List<HardwareViewModel>>("api/Hardware/GetList");
                 if (list != null)
                 {
                     comboBoxHardware.DisplayMember = "HardwareName";
@@ -56,13 +51,13 @@ namespace SalePCView
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
             {
-                MessageBox.Show("Заполните поле количество", "Ошибка",
+                MessageBox.Show("Заполните поле Количество", "Ошибка",
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (comboBoxHardware.SelectedValue == null)
             {
-                MessageBox.Show("Выберите запчасть", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите компонент", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }

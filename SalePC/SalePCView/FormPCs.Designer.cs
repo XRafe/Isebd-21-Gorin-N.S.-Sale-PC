@@ -1,6 +1,6 @@
 ﻿namespace SalePCView
 {
-    partial class FormSalePCs
+    partial class FormPCs
     {
         /// <summary>
         /// Required designer variable.
@@ -103,7 +103,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormSalePCs";
             this.Text = "Компьютеры";
-            this.Load += new System.EventHandler(this.FormSalePCs_Load);
+            this.Load += new System.EventHandler(this.FormPCs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

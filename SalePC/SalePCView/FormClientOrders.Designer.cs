@@ -89,7 +89,6 @@
             this.Controls.Add(this.dateTimePickerTo);
             this.Controls.Add(this.dateTimePickerFrom);
             this.Name = "FormClientOrders";
-            this.Load += new System.EventHandler(this.FormClientOrders_Load);
             this.ResumeLayout(false);
 
         }

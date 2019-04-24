@@ -196,7 +196,7 @@
             this.загруженностьСкладовToolStripMenuItem.Name = "загруженностьСкладовToolStripMenuItem";
             this.загруженностьСкладовToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.загруженностьСкладовToolStripMenuItem.Text = "Загруженность складов";
-            this.загруженностьСкладовToolStripMenuItem.Click += new System.EventHandler(this.загруженностьСкладовToolStripMenuItem_Click_1);
+            this.загруженностьСкладовToolStripMenuItem.Click += new System.EventHandler(this.загруженностьСкладовToolStripMenuItem_Click);
             // 
             // заказыКлиентовToolStripMenuItem
             // 
