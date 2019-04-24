@@ -5,8 +5,6 @@ using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SalePCServiceImplementList
 {
@@ -104,7 +102,8 @@ model.PCName);
                 HardwareId = groupHardware.HardwareId,
                     Count = groupHardware.Count
                 });
-            }
+            }
+
         }
         public void UpdElement(PCBindingModel model)
         {
@@ -176,7 +175,8 @@ model.PCName);
             else
             {
                 throw new Exception("Элемент не найден");
-            }
+            }
+
         }
     }
 
