@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System.Windows.Forms;
