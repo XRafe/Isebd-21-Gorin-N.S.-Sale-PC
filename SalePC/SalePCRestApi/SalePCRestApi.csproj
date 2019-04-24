@@ -112,8 +112,11 @@
     <Compile Include="App_Start\UnityWebApiActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ClientController.cs" />
+    <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\PCController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

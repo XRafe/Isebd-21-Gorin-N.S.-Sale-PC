@@ -32,9 +32,9 @@ namespace SalePCRestApi.Controllers
             return Ok(list);
         }
         [HttpPost]
-        public void SaveHardwarePrice(ReportBindingModel model)
+        public void SavePCPrice(ReportBindingModel model)
         {
-            _service.SaveHardwarePrice(model);
+            _service.SavePCPrice(model);
         }
         [HttpPost]
         public void SaveStocksLoad(ReportBindingModel model)

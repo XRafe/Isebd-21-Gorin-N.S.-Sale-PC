@@ -177,7 +177,6 @@
             // 
             // lifetimeStrategyBindingSource
             // 
-            this.lifetimeStrategyBindingSource.DataSource = typeof(Unity.Strategies.LifetimeStrategy);
             // 
             // FormPC
             // 

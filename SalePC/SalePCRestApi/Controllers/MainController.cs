@@ -42,9 +42,9 @@ namespace SalePCRestApi.Controllers
             _service.PayOrder(model);
         }
         [HttpPost]
-        public void PutComponentOnStock(StockComponentBindingModel model)
+        public void PutComponentOnStock(StockHardwareBindingModel model)
         {
-            _service.PutComponentOnStock(model);
+            _service.PutHardwareOnStock(model);
         }
     }
 }
