@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SalePC;
 using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
@@ -56,7 +54,8 @@ namespace SalePCServiceImplementList
             {
                 Id = maxId + 1,
                 HardwareName = model.HardwareName
-            });
+            });
+
         }
         public void UpdElement(HardwareBindingModel model)
         {
@@ -83,7 +82,8 @@ namespace SalePCServiceImplementList
             else
             {
                 throw new Exception("Элемент не найден");
-            }
+            }
+
         }
     }
 

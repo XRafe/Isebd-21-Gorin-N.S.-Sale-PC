@@ -1,7 +1,6 @@
 ﻿using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
-using SalePCServiceImplementDataBase.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
