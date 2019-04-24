@@ -6,6 +6,7 @@ using SalePCServiceDAL.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace SalePCServiceImplementList
 {
     public class MainServiceList : IMainService
