@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SalePC;
 using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
-using SalePCServiceDAL.ViewModels;
+using SalePCServiceDAL.ViewModels;
+
 
 namespace SalePCServiceImplementList
 {
@@ -98,5 +96,6 @@ namespace SalePCServiceImplementList
             }
             throw new Exception("Элемент не найден");
         }
-    }
+    }
+
 }
