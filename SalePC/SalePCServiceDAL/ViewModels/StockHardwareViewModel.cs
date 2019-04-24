@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;using System.Runtime.Serialization;
+﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+
 
 namespace SalePCServiceDAL.ViewModels
 {
@@ -22,5 +19,6 @@ namespace SalePCServiceDAL.ViewModels
         [DisplayName("Количество")]
         [DataMember]
         public int Count { get; set; }
-    }
+    }
+
 }
