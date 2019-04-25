@@ -61,7 +61,7 @@ namespace SalePCView
                     int id = Convert.ToInt32(comboBoxSalePC.SelectedValue);
                     PCViewModel SalePC = serviceSalePC.GetElement(id);
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * SalePC.Price).ToString();
+                    textBoxSum.Text = (Convert.ToInt32(count * SalePC.Price)).ToString();
                 }
                 catch (Exception ex)
                 {
