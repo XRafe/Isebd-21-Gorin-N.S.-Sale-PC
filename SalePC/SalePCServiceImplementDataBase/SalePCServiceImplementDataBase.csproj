@@ -62,6 +62,7 @@
     <Compile Include="AbstracPCDbContext.cs" />
     <Compile Include="Implementations\ClientServiceDB.cs" />
     <Compile Include="Implementations\HardwareServiceDB.cs" />
+    <Compile Include="Implementations\ImplementerServiceDB.cs" />
     <Compile Include="Implementations\MainServiceDB.cs" />
     <Compile Include="Implementations\PCServiceDB.cs" />
     <Compile Include="Implementations\ReportServiceDB.cs" />

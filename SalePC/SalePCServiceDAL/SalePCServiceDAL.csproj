@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BindingModels\ClientBindingModel.cs" />
     <Compile Include="BindingModels\HardwareBindingModel.cs" />
+    <Compile Include="BindingModels\ImplementerBindingModel.cs" />
     <Compile Include="BindingModels\OrderBindingModel.cs" />
     <Compile Include="BindingModels\OrderStatusBindingModel.cs" />
     <Compile Include="BindingModels\PCBindingModel.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="BindingModels\StockHardwareBindingModel.cs" />
     <Compile Include="Interfaces\IClientService.cs" />
     <Compile Include="Interfaces\IHardwareService.cs" />
+    <Compile Include="Interfaces\IImplementerService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IPCService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="ViewModels\ClientOrdersModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\HardwareViewModel.cs" />
+    <Compile Include="ViewModels\ImplementerViewModel.cs" />
     <Compile Include="ViewModels\OrderStatusViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PCHardwareViewModel.cs" />
