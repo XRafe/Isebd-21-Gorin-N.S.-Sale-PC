@@ -10,6 +10,7 @@ namespace SalePCView
         public FormMain()
         {
             InitializeComponent();
+            LoadData();
         }
         private void LoadData()
         {

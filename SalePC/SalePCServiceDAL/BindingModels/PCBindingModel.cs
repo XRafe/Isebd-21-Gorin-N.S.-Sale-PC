@@ -12,6 +12,7 @@ namespace SalePCServiceDAL.BindingModels
         public string PCName { get; set; }
         [DataMember]
         public decimal Price { get; set; }
+        [DataMember]
         public List<PCHardwareBindingModel> PCHardwares { get; set; }
     }
 }

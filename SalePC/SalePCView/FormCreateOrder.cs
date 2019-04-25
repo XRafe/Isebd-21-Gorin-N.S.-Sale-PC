@@ -77,7 +77,7 @@ namespace SalePCView
             }
             if (comboBoxSalePC.SelectedValue == null)
             {
-                MessageBox.Show("Выберите консерву", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите комплектующие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
@@ -89,7 +89,7 @@ namespace SalePCView
                     ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     PCId = Convert.ToInt32(comboBoxSalePC.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToInt32(textBoxSum.Text)
+                    Sum = 10000
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);

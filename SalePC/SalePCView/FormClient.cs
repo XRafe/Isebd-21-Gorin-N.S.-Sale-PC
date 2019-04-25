@@ -73,4 +73,4 @@ namespace SalePCView
             Close();
         }
     }
-}
+}

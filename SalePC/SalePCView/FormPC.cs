@@ -132,16 +132,16 @@ namespace SalePCView
             }
             if (PCHardwares == null || PCHardwares.Count == 0)
             {
-                MessageBox.Show("Заполните ингредиенты", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Заполните комплектующие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                List<PCHardwareBindingModel> PCHardwareBM = new List<PCHardwareBindingModel>();
+                List<PCHardwareBindingModel> PCHardwareBindingModel = new List<PCHardwareBindingModel>();
                 for (int i = 0; i < PCHardwares.Count; ++i)
                 {
-                    PCHardwareBM.Add(new PCHardwareBindingModel
+                    PCHardwareBindingModel.Add(new PCHardwareBindingModel
                     {
                         Id = PCHardwares[i].Id,
                         PCId = PCHardwares[i].PCId,
@@ -157,7 +157,7 @@ namespace SalePCView
                         Id = id.Value,
                         PCName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),
-                        PCHardwares = PCHardwareBM
+                        PCHardwares = PCHardwareBindingModel
                     });
                 }
                 else
@@ -166,7 +166,7 @@ namespace SalePCView
                     {
                         PCName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),
-                        PCHardwares = PCHardwareBM
+                        PCHardwares = PCHardwareBindingModel
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

@@ -47,4 +47,4 @@ namespace SalePCRestApi.Controllers
             _service.DelElement(model.Id);
         }
     }
-}
+}
