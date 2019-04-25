@@ -39,6 +39,19 @@ namespace SalePCServiceImplementDataBase.Implementations
             .ToList();
             return result;
         }
+
+        public List<OrderViewModel> GetFreeOrders()
+        {
+            List<OrderViewModel> result = context.Orders
+            .Where(x => x.Status == OrderStatus.Принят || x.Status ==
+           OrderStatus.НедостаточноРесурсов)
+            .Select(rec => new OrderViewModel
+            {
+                Id = rec.Id
+            })
+            .ToList();
+            return result;
+        }
         public void CreateOrder(OrderBindingModel model)
         {
             context.Orders.Add(new Order

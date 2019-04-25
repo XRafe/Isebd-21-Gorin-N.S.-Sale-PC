@@ -1,7 +1,7 @@
 ﻿using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.ViewModels;
 using System.Collections.Generic;
-namespace AbstractShopServiceDAL.Interfaces
+namespace SalePCServiceDAL.Interfaces
 {
     public interface IImplementerService
     {
@@ -12,4 +12,4 @@ namespace AbstractShopServiceDAL.Interfaces
         void DelElement(int id);
         ImplementerViewModel GetFreeWorker();
     }
-}
+}
