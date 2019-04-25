@@ -26,7 +26,8 @@ namespace SalePCServiceImplementDataBase.Implementations
                 PCId = rec.PCId,
                 DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
-            SqlFunctions.DateName("yyyy", rec.DateCreate), DateImplement = rec.DateImplement == null ? "" :
+            SqlFunctions.DateName("yyyy", rec.DateCreate),
+                DateImplement = rec.DateImplement == null ? "" :
             SqlFunctions.DateName("dd", rec.DateImplement.Value) + " " +
             SqlFunctions.DateName("mm", rec.DateImplement.Value) + " " +
             SqlFunctions.DateName("yyyy", rec.DateImplement.Value),
@@ -39,7 +40,6 @@ namespace SalePCServiceImplementDataBase.Implementations
             .ToList();
             return result;
         }
-
         public List<OrderViewModel> GetFreeOrders()
         {
             List<OrderViewModel> result = context.Orders
@@ -67,7 +67,7 @@ namespace SalePCServiceImplementDataBase.Implementations
         }
         public void TakeOrderInWork(OrderBindingModel model)
         {
-        using (var transaction = context.Database.BeginTransaction())
+            using (var transaction = context.Database.BeginTransaction())
             {
                 try
                 {
@@ -109,7 +109,7 @@ namespace SalePCServiceImplementDataBase.Implementations
                         {
                             throw new Exception("Не достаточно компонента " +
                            PCHardware.Hardware.HardwareName + " требуется " + PCHardware.Count + ", не хватает " + countOnStocks);
-                         }
+                        }
                     }
                     element.DateImplement = DateTime.Now;
                     element.Status = OrderStatus.Выполняется;
@@ -127,7 +127,7 @@ namespace SalePCServiceImplementDataBase.Implementations
         {
             Order element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
-        {
+            {
                 throw new Exception("Элемент не найден");
             }
             if (element.Status != OrderStatus.Выполняется)

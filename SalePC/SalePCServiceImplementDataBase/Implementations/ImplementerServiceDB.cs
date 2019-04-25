@@ -9,8 +9,8 @@ namespace SalePCServiceImplementDataBase.Implementations
 {
     public class ImplementerServiceDB : IImplementerService
     {
-        private AbstractDbContext context;
-        public ImplementerServiceDB(AbstractDbContext context)
+        private AbstractPCDbContext context;
+        public ImplementerServiceDB(AbstractPCDbContext context)
         {
             this.context = context;
         }

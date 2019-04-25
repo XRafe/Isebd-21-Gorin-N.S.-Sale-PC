@@ -44,7 +44,6 @@ namespace SalePCRestApi.Services
                 // Типа выполняем
                 Thread.Sleep(10000);
                 _service.FinishOrder(new OrderBindingModel
-               166
             {
                     Id = _orderId
  });
