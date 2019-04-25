@@ -288,6 +288,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SalePCRestApi\SalePCRestApi.csproj">
+      <Project>{2875577a-dc5d-49ed-a2a6-197013ad68ad}</Project>
+      <Name>SalePCRestApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SalePCServiceDAL\SalePCServiceDAL.csproj">
       <Project>{c5a5743d-28fe-497e-9ee3-425c92c1b1d8}</Project>
       <Name>SalePCServiceDAL</Name>

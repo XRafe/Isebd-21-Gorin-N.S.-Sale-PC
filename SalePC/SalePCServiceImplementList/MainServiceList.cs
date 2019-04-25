@@ -35,6 +35,18 @@ namespace SalePCServiceImplementList
             return result;
 
         }
+        public List<OrderViewModel> GetFreeOrders()
+        {
+            List<OrderViewModel> result = source.Orders
+            .Where(x => x.Status == OrderStatus.Принят || x.Status ==
+           OrderStatus.НедостаточноРесурсов)
+            .Select(rec => new OrderViewModel
+            {
+                Id = rec.Id
+            })
+            .ToList();
+            return result;
+        }
         public void CreateOrder(OrderBindingModel model)
         {
             int maxId = source.Orders.Count > 0 ? source.Orders.Max(rec => rec.Id) : 0;

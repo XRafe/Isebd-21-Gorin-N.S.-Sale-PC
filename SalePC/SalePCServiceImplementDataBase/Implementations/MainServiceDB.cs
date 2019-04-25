@@ -51,7 +51,8 @@ namespace SalePCServiceImplementDataBase.Implementations
             })
             .ToList();
             return result;
-        }
+        }
+
         public void CreateOrder(OrderBindingModel model)
         {
             context.Orders.Add(new Order

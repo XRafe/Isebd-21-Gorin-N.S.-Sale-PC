@@ -21,6 +21,7 @@ namespace SalePCServiceImplementDataBase
         }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Hardware> Hardwares { get; set; }
+        public virtual DbSet<Implementer> Implementers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<PC> PCs { get; set; }
         public virtual DbSet<PCHardwares> PCHardwares { get; set; }
