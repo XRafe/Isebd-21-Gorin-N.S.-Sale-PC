@@ -13,6 +13,7 @@ namespace SalePCServiceDAL.ViewModels
         [DisplayName("Название склада")]
         [DataMember]
         public string StockName { get; set; }
+        [DataMember]
         public List<StockHardwareViewModel> StockHardware { get; set; }
     }
 

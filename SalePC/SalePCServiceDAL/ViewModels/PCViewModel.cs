@@ -12,6 +12,7 @@ namespace SalePCServiceDAL.ViewModels
         public string PCName { get; set; }
         [DataMember]
         public decimal Price { get; set; }
+        [DataMember]
         public List<PCHardwareViewModel> PCHardwares { get; set; }
     }
 }

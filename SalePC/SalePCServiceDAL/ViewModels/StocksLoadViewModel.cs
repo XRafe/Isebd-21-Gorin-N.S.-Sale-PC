@@ -11,6 +11,7 @@ namespace SalePCServiceDAL.ViewModels
         public string StockName { get; set; }
         [DataMember]
         public int TotalCount { get; set; }
+        [DataMember]
         public IEnumerable<Tuple<string, int>> Hardwares { get; set; }
     }
 }

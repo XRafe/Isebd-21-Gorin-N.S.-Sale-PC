@@ -44,7 +44,7 @@ namespace SalePCView
                     int id = Convert.ToInt32(comboBoxSalePC.SelectedValue);
                     PCViewModel PC = APIClient.GetRequest<PCViewModel>("api/PC/Get/" + id);
                     int count = Convert.ToInt32(textBoxCount.Text);
-                    textBoxSum.Text = (count * PC.Price).ToString();
+                    textBoxSum.Text = (Convert.ToInt32(count * PC.Price)).ToString();
                 }
                 catch (Exception ex)
                 {

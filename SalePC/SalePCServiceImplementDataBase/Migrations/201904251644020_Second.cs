@@ -3,7 +3,7 @@ namespace SalePCServiceImplementDataBase.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SecondMigrations : DbMigration
+    public partial class Second : DbMigration
     {
         public override void Up()
         {

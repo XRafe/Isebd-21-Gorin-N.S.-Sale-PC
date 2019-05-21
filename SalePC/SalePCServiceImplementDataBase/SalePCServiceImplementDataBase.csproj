@@ -71,9 +71,9 @@
     <Compile Include="Migrations\201904130648099_FirstMigration.Designer.cs">
       <DependentUpon>201904130648099_FirstMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904250719089_SecondMigrations.cs" />
-    <Compile Include="Migrations\201904250719089_SecondMigrations.Designer.cs">
-      <DependentUpon>201904250719089_SecondMigrations.cs</DependentUpon>
+    <Compile Include="Migrations\201904251644020_Second.cs" />
+    <Compile Include="Migrations\201904251644020_Second.Designer.cs">
+      <DependentUpon>201904251644020_Second.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,8 +102,8 @@
     <EmbeddedResource Include="Migrations\201904130648099_FirstMigration.resx">
       <DependentUpon>201904130648099_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904250719089_SecondMigrations.resx">
-      <DependentUpon>201904250719089_SecondMigrations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904251644020_Second.resx">
+      <DependentUpon>201904251644020_Second.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
