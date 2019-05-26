@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCServiceImplementList"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCView", "SalePCView\SalePCView.csproj", "{447917BB-AD9D-4764-84AB-1E90AACA0401}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCServiceImplementDataBase", "SalePCServiceImplementDataBase\SalePCServiceImplementDataBase.csproj", "{59285DBA-AED2-49BE-A85B-CB477AED5456}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{447917BB-AD9D-4764-84AB-1E90AACA0401}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{447917BB-AD9D-4764-84AB-1E90AACA0401}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{447917BB-AD9D-4764-84AB-1E90AACA0401}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59285DBA-AED2-49BE-A85B-CB477AED5456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59285DBA-AED2-49BE-A85B-CB477AED5456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59285DBA-AED2-49BE-A85B-CB477AED5456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59285DBA-AED2-49BE-A85B-CB477AED5456}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

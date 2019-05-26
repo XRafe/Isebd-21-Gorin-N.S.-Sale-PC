@@ -83,7 +83,7 @@
             // textBoxCount
             // 
             this.textBoxCount.Location = new System.Drawing.Point(104, 70);
-            this.textBoxCount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxCount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCount.Name = "textBoxCount";
             this.textBoxCount.Size = new System.Drawing.Size(165, 20);
             this.textBoxCount.TabIndex = 6;
@@ -92,7 +92,7 @@
             // textBoxSum
             // 
             this.textBoxSum.Location = new System.Drawing.Point(104, 97);
-            this.textBoxSum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxSum.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSum.Name = "textBoxSum";
             this.textBoxSum.ReadOnly = true;
             this.textBoxSum.Size = new System.Drawing.Size(165, 20);
@@ -101,7 +101,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Location = new System.Drawing.Point(81, 123);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(86, 24);
             this.buttonCancel.TabIndex = 8;
@@ -112,7 +112,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(182, 123);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 24);
             this.button1.TabIndex = 9;
@@ -124,7 +124,7 @@
             // 
             this.comboBoxClient.FormattingEnabled = true;
             this.comboBoxClient.Location = new System.Drawing.Point(104, 20);
-            this.comboBoxClient.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxClient.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxClient.Name = "comboBoxClient";
             this.comboBoxClient.Size = new System.Drawing.Size(165, 21);
             this.comboBoxClient.TabIndex = 10;
@@ -133,7 +133,7 @@
             // 
             this.comboBoxSalePC.FormattingEnabled = true;
             this.comboBoxSalePC.Location = new System.Drawing.Point(104, 44);
-            this.comboBoxSalePC.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxSalePC.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxSalePC.Name = "comboBoxSalePC";
             this.comboBoxSalePC.Size = new System.Drawing.Size(165, 21);
             this.comboBoxSalePC.TabIndex = 11;
@@ -153,7 +153,7 @@
             this.Controls.Add(this.labelCount);
             this.Controls.Add(this.labelSalePC);
             this.Controls.Add(this.labelClient);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormCreateOrder";
             this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
