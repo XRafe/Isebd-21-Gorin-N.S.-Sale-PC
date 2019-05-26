@@ -54,6 +54,27 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -152,8 +173,21 @@
     <Compile Include="FormStocks.Designer.cs">
       <DependentUpon>FormStocks.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStocksLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStocksLoad.Designer.cs">
+      <DependentUpon>FormStocksLoad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FormClientOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClientOrders.Designer.cs">
+      <DependentUpon>FormClientOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="FormPC.resx">
       <DependentUpon>FormPC.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +224,9 @@
     <EmbeddedResource Include="FormStocks.resx">
       <DependentUpon>FormStocks.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormStocksLoad.resx">
+      <DependentUpon>FormStocksLoad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -200,7 +237,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="FormClientOrders.resx">
+      <DependentUpon>FormClientOrders.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\SalePCServiceDAL.ViewModels.ClientOrdersModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -213,24 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SalePCServiceDAL\SalePCServiceDAL.csproj">
-      <Project>{c5a5743d-28fe-497e-9ee3-425c92c1b1d8}</Project>
-      <Name>SalePCServiceDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SalePCServiceImplementDataBase\SalePCServiceImplementDataBase.csproj">
-      <Project>{59285dba-aed2-49be-a85b-cb477aed5456}</Project>
-      <Name>SalePCServiceImplementDataBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SalePCServiceImplementList\SalePCServiceImplementList.csproj">
-      <Project>{cc6e83ac-eb03-43aa-91bb-e5e6cdfd507c}</Project>
-      <Name>SalePCServiceImplementList</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SalePC\SalePC.csproj">
-      <Project>{a36afc51-89a6-40b9-b9dd-e76e937b2217}</Project>
-      <Name>SalePC</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -246,6 +269,35 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SalePCServiceDAL\SalePCServiceDAL.csproj">
+      <Project>{c5a5743d-28fe-497e-9ee3-425c92c1b1d8}</Project>
+      <Name>SalePCServiceDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SalePCServiceImplementDataBase\SalePCServiceImplementDataBase.csproj">
+      <Project>{59285dba-aed2-49be-a85b-cb477aed5456}</Project>
+      <Name>SalePCServiceImplementDataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SalePC\SalePC.csproj">
+      <Project>{a36afc51-89a6-40b9-b9dd-e76e937b2217}</Project>
+      <Name>SalePC</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,7 +13,7 @@ namespace SalePC
         [Required]
         public int Count { get; set; }
         public virtual Hardware Hardware { get; set; }
-        public virtual PC PC { get; set; }
+        public virtual Stock Stock { get; set; }
 
     }
 }

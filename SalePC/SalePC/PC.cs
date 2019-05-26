@@ -16,6 +16,8 @@ namespace SalePC
         public decimal Price { get; set; }
         [ForeignKey("PCId")]
         public virtual List<PCHardwares> PCHardwares { get; set; }
+        [ForeignKey("PCId")]
+        public virtual List<Order> Orders { get; set; }
     }
 
 }
