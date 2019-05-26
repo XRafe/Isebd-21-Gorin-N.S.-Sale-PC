@@ -45,7 +45,6 @@
     <Compile Include="BindingModels\ClientBindingModel.cs" />
     <Compile Include="BindingModels\HardwareBindingModel.cs" />
     <Compile Include="BindingModels\OrderBindingModel.cs" />
-    <Compile Include="BindingModels\OrderStatusBindingModel.cs" />
     <Compile Include="BindingModels\PCBindingModel.cs" />
     <Compile Include="BindingModels\PCHardwareBindingModel.cs" />
     <Compile Include="BindingModels\ReportBindingModel.cs" />
@@ -61,7 +60,6 @@
     <Compile Include="ViewModels\ClientOrdersModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\HardwareViewModel.cs" />
-    <Compile Include="ViewModels\OrderStatusViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\PCHardwareViewModel.cs" />
     <Compile Include="ViewModels\PCViewModel.cs" />
