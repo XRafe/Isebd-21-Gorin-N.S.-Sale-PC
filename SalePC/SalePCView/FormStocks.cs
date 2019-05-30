@@ -80,11 +80,10 @@ namespace SalePCView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = new FormStock()
-                {
-                    Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value)
-                };
-                if (form.ShowDialog() == DialogResult.OK)
+                var form = new FormStock();
+                int n = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                form.Id = n;
+                if (form.ShowDialog() != DialogResult.OK)
                 {
                     LoadData();
                 }

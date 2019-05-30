@@ -17,16 +17,21 @@ namespace SalePCView
             try
             {
                 List<ClientViewModel> listC = APIClient.GetRequest<List<ClientViewModel>>("api/Client/GetList");
-                comboBoxClient.DisplayMember = "ClientFIO";
-                comboBoxClient.ValueMember = "Id";
-                comboBoxClient.DataSource = listC;
-                comboBoxClient.SelectedItem = null;
-
+                if (listC != null)
+                {
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.DataSource = listC;
+                    comboBoxClient.SelectedItem = null;
+                }
                 List<PCViewModel> listPC = APIClient.GetRequest<List<PCViewModel>>("api/PC/GetList");
-                comboBoxSalePC.DisplayMember = "PCName";
-                comboBoxSalePC.ValueMember = "Id";
-                comboBoxSalePC.DataSource = listPC;
-                comboBoxSalePC.SelectedItem = null;
+                if (listPC != null)
+                {
+                    comboBoxSalePC.DisplayMember = "PCName";
+                    comboBoxSalePC.ValueMember = "Id";
+                    comboBoxSalePC.DataSource = listPC;
+                    comboBoxSalePC.SelectedItem = null;
+                }
             }
             catch (Exception ex)
             {
@@ -57,7 +62,7 @@ namespace SalePCView
         {
             CalcSum();
         }
-        private void comboBoxPC_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxSalePC_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -84,12 +89,13 @@ namespace SalePCView
             try
             {
                 APIClient.PostRequest<OrderBindingModel,
-                bool>("api/Client/UpdElement", new OrderBindingModel
+                bool>("api/Main/CreateOrder", new OrderBindingModel
                 {
                     ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     PCId = Convert.ToInt32(comboBoxSalePC.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToInt32(textBoxSum.Text)
+
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);
