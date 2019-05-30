@@ -1,4 +1,4 @@
-﻿namespace FishShopView
+﻿namespace SalePCView
 {
     partial class FormImplementers
     {

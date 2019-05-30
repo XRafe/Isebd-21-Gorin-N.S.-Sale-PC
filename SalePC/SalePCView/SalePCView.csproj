@@ -109,6 +109,12 @@
     <Compile Include="FormImplementer.Designer.cs">
       <DependentUpon>FormImplementer.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormImplementers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormImplementers.Designer.cs">
+      <DependentUpon>FormImplementers.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="FormImplementer.resx">
       <DependentUpon>FormImplementer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormImplementers.resx">
+      <DependentUpon>FormImplementers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPC.resx">
       <DependentUpon>FormPC.cs</DependentUpon>

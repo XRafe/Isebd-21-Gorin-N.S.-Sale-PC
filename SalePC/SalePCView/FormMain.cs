@@ -134,7 +134,7 @@ namespace SalePCView
 
         private void сотрудникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new FormImplementer();
+            var form = new FormImplementers();
             form.ShowDialog();
         }
 
