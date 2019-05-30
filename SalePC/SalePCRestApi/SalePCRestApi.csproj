@@ -115,6 +115,7 @@
     <Compile Include="Controllers\HardwareController.cs" />
     <Compile Include="Controllers\ImplementerController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MessageInfoController.cs" />
     <Compile Include="Controllers\PCController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\StockController.cs" />

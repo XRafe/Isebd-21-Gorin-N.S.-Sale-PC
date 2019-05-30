@@ -27,5 +27,6 @@ namespace SalePCServiceImplementDataBase
         public virtual DbSet<PCHardwares> PCHardwares { get; set; }
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<StockHardware> StockHardwares { get; set; }
+        public virtual DbSet<MessageInfo> MessageInfos { get; set; }
     }
 }
