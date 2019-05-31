@@ -52,8 +52,7 @@ namespace SalePCView
             string mail = textBoxMail.Text;
             if (!string.IsNullOrEmpty(mail))
             {
-                if (!Regex.IsMatch(mail, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-
-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9az][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
+                if (!Regex.IsMatch(mail, @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)"))
                 {
                     MessageBox.Show("Неверный формат для электронной почты", "Ошибка",
                    MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -63,7 +62,7 @@ namespace SalePCView
             if (id.HasValue)
             {
                 APIClient.PostRequest<ClientBindingModel,
-               bool>("api/Component/UpdElement", new ClientBindingModel
+               bool>("api/Client/UpdElement", new ClientBindingModel
                {
                    Id = id.Value,
                    ClientFIO = fio,
@@ -73,7 +72,7 @@ namespace SalePCView
             else
             {
                 APIClient.PostRequest<ClientBindingModel,
-               bool>("api/Component/AddElement", new ClientBindingModel
+               bool>("api/Client/AddElement", new ClientBindingModel
                {
                    ClientFIO = fio,
                    Mail = mail

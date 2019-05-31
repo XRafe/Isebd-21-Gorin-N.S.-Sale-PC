@@ -7,13 +7,13 @@ namespace SalePCServiceImplementDataBase.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Three : IMigrationMetadata
+    public sealed partial class ThreeMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Three));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ThreeMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905302032211_Three"; }
+            get { return "201905311106235_ThreeMigration"; }
         }
         
         string IMigrationMetadata.Source

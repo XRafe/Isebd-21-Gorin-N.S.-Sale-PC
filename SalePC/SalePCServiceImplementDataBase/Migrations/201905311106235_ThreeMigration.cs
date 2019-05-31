@@ -3,7 +3,7 @@ namespace SalePCServiceImplementDataBase.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class ThreeM : DbMigration
+    public partial class ThreeMigration : DbMigration
     {
         public override void Up()
         {
