@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201905302032211_Three.Designer.cs">
       <DependentUpon>201905302032211_Three.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905310929430_ThreeM.cs" />
+    <Compile Include="Migrations\201905310929430_ThreeM.Designer.cs">
+      <DependentUpon>201905310929430_ThreeM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905302032211_Three.resx">
       <DependentUpon>201905302032211_Three.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905310929430_ThreeM.resx">
+      <DependentUpon>201905310929430_ThreeM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
