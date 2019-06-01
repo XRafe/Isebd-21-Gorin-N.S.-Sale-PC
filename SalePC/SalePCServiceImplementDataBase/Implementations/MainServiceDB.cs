@@ -27,6 +27,7 @@ namespace SalePCServiceImplementDataBase.Implementations
                 Id = rec.Id,
                 ClientId = rec.ClientId,
                 PCId = rec.PCId,
+                ImplementerId = rec.ImplementerId,
                 DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
             SqlFunctions.DateName("yyyy", rec.DateCreate),
@@ -42,15 +43,26 @@ namespace SalePCServiceImplementDataBase.Implementations
                 Sum = rec.Sum,
                 ClientFIO = rec.Client.ClientFIO,
                 PCName = rec.PC.PCName,
-                ImplementerId = rec.Implementer.Id,
                 ImplementerName = rec.Implementer.ImplementerFIO
+            })
+            .ToList();
+            return result;
+        }
+        public List<OrderViewModel> GetFreeOrders()
+        {
+            List<OrderViewModel> result = context.Orders
+            .Where(x => x.Status == OrderStatus.Принят || x.Status ==
+           OrderStatus.НедостаточноРесурсов)
+            .Select(rec => new OrderViewModel
+            {
+                Id = rec.Id
             })
             .ToList();
             return result;
         }
         public void CreateOrder(OrderBindingModel model)
         {
-            context.Orders.Add(new Order
+            var order = new Order
             {
                 ClientId = model.ClientId,
                 PCId = model.PCId,
@@ -58,32 +70,36 @@ namespace SalePCServiceImplementDataBase.Implementations
                 Count = model.Count,
                 Sum = model.Sum,
                 Status = OrderStatus.Принят
-            });
+            };
+        context.Orders.Add(order);
             context.SaveChanges();
+            var client = context.Clients.FirstOrDefault(x => x.Id == model.ClientId);
+            SendEmail(client.Mail, "Оповещение по заказам", string.Format("Заказ №{0} от {1} создан успешно", order.Id, order.DateCreate.ToShortDateString()));
         }
         public void TakeOrderInWork(OrderBindingModel model)
         {
             using (var transaction = context.Database.BeginTransaction())
             {
+                Order element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
                 try
                 {
-                    Order element = context.Orders.FirstOrDefault(rec => rec.Id ==
-                   model.Id);
                     if (element == null)
                     {
                         throw new Exception("Элемент не найден");
                     }
-                    if (element.Status != OrderStatus.Принят)
+                    if (element.Status != OrderStatus.Принят && element.Status !=
+                    OrderStatus.НедостаточноРесурсов)
                     {
                         throw new Exception("Заказ не в статусе \"Принят\"");
                     }
-                    var PCHardwares = context.PCHardwares.Include(rec => rec.Hardware).Where(rec => rec.PCId == element.PCId);
+                    var PCHardwares = context.PCHardwares.Include(rec =>
+                    rec.Hardware).Where(rec => rec.PCId == element.PCId);
                     // списываем
                     foreach (var PCHardware in PCHardwares)
                     {
                         int countOnStocks = PCHardware.Count * element.Count;
                         var stockHardwares = context.StockHardwares.Where(rec =>
-                        rec.HardwareId == PCHardware.HardwareId);
+                       rec.HardwareId == PCHardware.HardwareId);
                         foreach (var stockHardware in stockHardwares)
                         {
                             // компонентов на одном слкаде может не хватать
@@ -103,19 +119,24 @@ namespace SalePCServiceImplementDataBase.Implementations
                         }
                         if (countOnStocks > 0)
                         {
-                            throw new Exception("Не достаточно компонента " +
-                           PCHardware.Hardware.HardwareName + " требуется " + PCHardware.Count + ", нехватает " + countOnStocks);
-                        }
+                            throw new Exception("Не достаточно компонента " + PCHardware.Hardware.HardwareName + " требуется " + PCHardware.Count + ", не хватает " + countOnStocks);
+                         }
                     }
+                    element.ImplementerId = model.ImplementerId;
                     element.DateImplement = DateTime.Now;
                     element.Status = OrderStatus.Выполняется;
-                    element.ImplementerId = model.ImplementerId;
                     context.SaveChanges();
+                    SendEmail(element.Client.Mail, "Оповещение по заказам",
+                    string.Format("Заказ №{0} от {1} передеан в работу", element.Id,
+                    element.DateCreate.ToShortDateString()));
                     transaction.Commit();
                 }
                 catch (Exception)
                 {
                     transaction.Rollback();
+                    element.Status = OrderStatus.НедостаточноРесурсов;
+                    context.SaveChanges();
+                    transaction.Commit();
                     throw;
                 }
             }
@@ -133,6 +154,7 @@ namespace SalePCServiceImplementDataBase.Implementations
             }
             element.Status = OrderStatus.Готов;
             context.SaveChanges();
+            SendEmail(element.Client.Mail, "Оповещение по заказам", string.Format("Заказ №{ 0} от { 1} передан на оплату", element.Id, element.DateCreate.ToShortDateString()));
         }
         public void PayOrder(OrderBindingModel model)
         {
@@ -147,21 +169,8 @@ namespace SalePCServiceImplementDataBase.Implementations
             }
             element.Status = OrderStatus.Оплачен;
             context.SaveChanges();
+            SendEmail(element.Client.Mail, "Оповещение по заказам", string.Format("Заказ №{ 0} от { 1} оплачен успешно", element.Id, element.DateCreate.ToShortDateString()));
         }
-
-        public List<OrderViewModel> GetFreeOrders()
-        {
-            List<OrderViewModel> result = context.Orders
-            .Where(x => x.Status == OrderStatus.Принят || x.Status ==
-           OrderStatus.НедостаточноРесурсов)
-            .Select(rec => new OrderViewModel
-            {
-                Id = rec.Id
-            })
-            .ToList();
-            return result;
-        }
-
         public void PutHardwareOnStock(StockHardwareBindingModel model)
         {
             StockHardware element = context.StockHardwares.FirstOrDefault(rec =>
@@ -213,5 +222,6 @@ namespace SalePCServiceImplementDataBase.Implementations
                 objSmtpClient = null;
             }
         }
+
     }
 }
