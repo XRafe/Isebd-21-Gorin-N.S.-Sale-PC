@@ -17,23 +17,24 @@ namespace SalePCServiceImplementList
         }
         public List<OrderViewModel> GetList()
         {
-            List<OrderViewModel> result = source.Orders.Select(rec => new OrderViewModel
-            {
-                Id = rec.Id,
-                ClientId = rec.ClientId,
-                PCId = rec.PCId,
-                DateCreate = rec.DateCreate.ToLongDateString(),
-                DateImplement = rec.DateImplement?.ToLongDateString(),
-                Status = rec.Status.ToString(),
-                Count = rec.Count,
-                Sum = rec.Sum,
-                ClientFIO = source.Clients.FirstOrDefault(recC => recC.Id ==
-                rec.ClientId)?.ClientFIO,
-                PCName = source.PCs.FirstOrDefault(recP => recP.Id ==
-               rec.PCId)?.PCName,
-            }).ToList();
+            List<OrderViewModel> result = source.Orders
+                .Select(rec => new OrderViewModel
+                {
+                    Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    PCId = rec.PCId,
+                    DateCreate = rec.DateCreate.ToLongDateString(),
+                    DateImplement = rec.DateImplement?.ToLongDateString(),
+                    Status = rec.Status.ToString(),
+                    Count = rec.Count,
+                    Sum = rec.Sum,
+                    ClientFIO = source.Clients.FirstOrDefault(recI => recI.Id ==
+     rec.ClientId)?.ClientFIO,
+                    PCName = source.PCs.FirstOrDefault(recC => recC.Id ==
+    rec.PCId)?.PCName,
+                })
+                .ToList();
             return result;
-
         }
         public void CreateOrder(OrderBindingModel model)
         {
@@ -48,7 +49,6 @@ namespace SalePCServiceImplementList
                 Sum = model.Sum,
                 Status = OrderStatus.Принят
             });
-
         }
         public void TakeOrderInWork(OrderBindingModel model)
         {
@@ -61,7 +61,9 @@ namespace SalePCServiceImplementList
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
             }
-            var PCHardwares = source.PCHardwares.Where(rec => rec.PCId == element.PCId);
+            // смотрим по количеству компонентов на складах
+            var PCHardwares = source.PCHardwares.Where(rec => rec.PCId
+           == element.PCId);
             foreach (var PCHardware in PCHardwares)
             {
                 int countOnStocks = source.StockHardwares
@@ -72,7 +74,7 @@ namespace SalePCServiceImplementList
                 {
                     var HardwareName = source.Hardwares.FirstOrDefault(rec => rec.Id ==
                    PCHardware.HardwareId);
-                    throw new Exception("Не достаточно компонента " +
+                    throw new Exception("Не достаточно ингредиента " +
                    HardwareName?.HardwareName + " требуется " + (PCHardware.Count * element.Count) +
                    ", в наличии " + countOnStocks);
                 }
@@ -85,7 +87,7 @@ namespace SalePCServiceImplementList
                == PCHardware.HardwareId);
                 foreach (var stockHardware in stockHardwares)
                 {
-                    // компонентов на одном слкаде может не хватать
+                    // ингредиентов на одном слкаде может не хватать
                     if (stockHardware.Count >= countOnStocks)
                     {
                         stockHardware.Count -= countOnStocks;
@@ -100,8 +102,8 @@ namespace SalePCServiceImplementList
             }
             element.DateImplement = DateTime.Now;
             element.Status = OrderStatus.Выполняется;
-
         }
+
         public void FinishOrder(OrderBindingModel model)
         {
             Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
@@ -115,6 +117,7 @@ namespace SalePCServiceImplementList
             }
             element.Status = OrderStatus.Готов;
         }
+
         public void PayOrder(OrderBindingModel model)
         {
             Order element = source.Orders.FirstOrDefault(rec => rec.Id == model.Id);
@@ -127,8 +130,8 @@ namespace SalePCServiceImplementList
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }
             element.Status = OrderStatus.Оплачен;
-
         }
+
         public void PutHardwareOnStock(StockHardwareBindingModel model)
         {
             StockHardware element = source.StockHardwares.FirstOrDefault(rec =>
@@ -151,6 +154,10 @@ namespace SalePCServiceImplementList
             }
         }
 
+        public List<OrderViewModel> GetFreeOrders()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

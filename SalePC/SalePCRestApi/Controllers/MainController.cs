@@ -1,15 +1,21 @@
-﻿using SalePCServiceDAL.BindingModels;
+﻿using SalePCRestApi.Services;
+using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
+using SalePCServiceDAL.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Web.Http;
 namespace SalePCRestApi.Controllers
 {
     public class MainController : ApiController
     {
         private readonly IMainService _service;
-        public MainController(IMainService service)
+        private readonly IImplementerService _serviceImplementer;
+        public MainController(IMainService service, IImplementerService
+       serviceImplementer)
         {
             _service = service;
+            _serviceImplementer = serviceImplementer;
         }
         [HttpGet]
         public IHttpActionResult GetList()
@@ -27,16 +33,6 @@ namespace SalePCRestApi.Controllers
             _service.CreateOrder(model);
         }
         [HttpPost]
-        public void TakeOrderInWork(OrderBindingModel model)
-        {
-            _service.TakeOrderInWork(model);
-        }
-        [HttpPost]
-        public void FinishOrder(OrderBindingModel model)
-        {
-            _service.FinishOrder(model);
-        }
-        [HttpPost]
         public void PayOrder(OrderBindingModel model)
         {
             _service.PayOrder(model);
@@ -45,6 +41,20 @@ namespace SalePCRestApi.Controllers
         public void PutComponentOnStock(StockHardwareBindingModel model)
         {
             _service.PutHardwareOnStock(model);
+        }
+        [HttpPost]
+        public void StartWork()
+        {
+            List<OrderViewModel> orders = _service.GetFreeOrders();
+            foreach (var order in orders)
+            {
+                ImplementerViewModel impl = _serviceImplementer.GetFreeWorker();
+                if (impl == null)
+                {
+                    throw new Exception("Нет сотрудников");
+                }
+                new WorkImplementer(_service, _serviceImplementer, impl.Id, order.Id);
+            }
         }
     }
 }

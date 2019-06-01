@@ -26,15 +26,21 @@ namespace SalePCServiceImplementDataBase.Implementations
                 PCId = rec.PCId,
                 DateCreate = SqlFunctions.DateName("dd", rec.DateCreate) + " " +
             SqlFunctions.DateName("mm", rec.DateCreate) + " " +
-            SqlFunctions.DateName("yyyy", rec.DateCreate), DateImplement = rec.DateImplement == null ? "" :
-            SqlFunctions.DateName("dd", rec.DateImplement.Value) + " " +
-            SqlFunctions.DateName("mm", rec.DateImplement.Value) + " " +
-            SqlFunctions.DateName("yyyy", rec.DateImplement.Value),
+            SqlFunctions.DateName("yyyy", rec.DateCreate),
+                DateImplement = rec.DateImplement == null ? "" :
+            SqlFunctions.DateName("dd",
+           rec.DateImplement.Value) + " " +
+            SqlFunctions.DateName("mm",
+           rec.DateImplement.Value) + " " +
+            SqlFunctions.DateName("yyyy",
+           rec.DateImplement.Value),
                 Status = rec.Status.ToString(),
                 Count = rec.Count,
                 Sum = rec.Sum,
                 ClientFIO = rec.Client.ClientFIO,
-                PCName = rec.PC.PCName
+                PCName = rec.PC.PCName,
+                ImplementerId = rec.Implementer.Id,
+                ImplementerName = rec.Implementer.ImplementerFIO
             })
             .ToList();
             return result;
@@ -54,7 +60,7 @@ namespace SalePCServiceImplementDataBase.Implementations
         }
         public void TakeOrderInWork(OrderBindingModel model)
         {
-        using (var transaction = context.Database.BeginTransaction())
+            using (var transaction = context.Database.BeginTransaction())
             {
                 try
                 {
@@ -95,11 +101,12 @@ namespace SalePCServiceImplementDataBase.Implementations
                         if (countOnStocks > 0)
                         {
                             throw new Exception("Не достаточно компонента " +
-                           PCHardware.Hardware.HardwareName + " требуется " + PCHardware.Count + ", не хватает " + countOnStocks);
-                         }
+                           PCHardware.Hardware.HardwareName + " требуется " + PCHardware.Count + ", нехватает " + countOnStocks);
+                        }
                     }
                     element.DateImplement = DateTime.Now;
                     element.Status = OrderStatus.Выполняется;
+                    element.ImplementerId = model.ImplementerId;
                     context.SaveChanges();
                     transaction.Commit();
                 }
@@ -114,7 +121,7 @@ namespace SalePCServiceImplementDataBase.Implementations
         {
             Order element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
-        {
+            {
                 throw new Exception("Элемент не найден");
             }
             if (element.Status != OrderStatus.Выполняется)
@@ -138,6 +145,20 @@ namespace SalePCServiceImplementDataBase.Implementations
             element.Status = OrderStatus.Оплачен;
             context.SaveChanges();
         }
+
+        public List<OrderViewModel> GetFreeOrders()
+        {
+            List<OrderViewModel> result = context.Orders
+            .Where(x => x.Status == OrderStatus.Принят || x.Status ==
+           OrderStatus.НедостаточноРесурсов)
+            .Select(rec => new OrderViewModel
+            {
+                Id = rec.Id
+            })
+            .ToList();
+            return result;
+        }
+
         public void PutHardwareOnStock(StockHardwareBindingModel model)
         {
             StockHardware element = context.StockHardwares.FirstOrDefault(rec =>

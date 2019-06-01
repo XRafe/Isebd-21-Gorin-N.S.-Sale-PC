@@ -12,6 +12,8 @@ namespace SalePCServiceDAL.BindingModels
         [DataMember]
         public int PCId { get; set; }
         [DataMember]
+        public int? ImplementerId { get; set; }
+        [DataMember]
         public int Count { get; set; }
         [DataMember]
         public decimal Sum { get; set; }

@@ -14,6 +14,10 @@ namespace SalePCServiceDAL.ViewModels
         [DataMember]
         public int PCId { get; set; }
         [DataMember]
+        public int? ImplementerId { get; set; }
+        [DataMember]
+        public string ImplementerName { get; set; }
+        [DataMember]
         public string PCName { get; set; }
         [DataMember]
         public int Count { get; set; }
