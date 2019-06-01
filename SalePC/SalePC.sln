@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCView", "SalePCView\Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCServiceImplementDataBase", "SalePCServiceImplementDataBase\SalePCServiceImplementDataBase.csproj", "{59285DBA-AED2-49BE-A85B-CB477AED5456}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCRestApi", "SalePCRestApi\SalePCRestApi.csproj", "{2875577A-DC5D-49ED-A2A6-197013AD68AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{59285DBA-AED2-49BE-A85B-CB477AED5456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59285DBA-AED2-49BE-A85B-CB477AED5456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59285DBA-AED2-49BE-A85B-CB477AED5456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2875577A-DC5D-49ED-A2A6-197013AD68AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2875577A-DC5D-49ED-A2A6-197013AD68AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2875577A-DC5D-49ED-A2A6-197013AD68AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2875577A-DC5D-49ED-A2A6-197013AD68AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

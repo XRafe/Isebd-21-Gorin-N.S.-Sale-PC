@@ -1,24 +1,18 @@
-﻿using System;
-using System.Windows.Forms;
-using SalePCServiceDAL.BindingModels;
+﻿using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
-using Unity;
-
+using System;
+using System.Windows.Forms;
 
 namespace SalePCView
 {
     public partial class FormStock : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IStockService service;
         private int? id;
-        public FormStock(IStockService service)
+        public FormStock()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormStock_Load(object sender, EventArgs e)
         {
@@ -26,17 +20,14 @@ namespace SalePCView
             {
                 try
                 {
-                    StockViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxName.Text = view.StockName;
-                        dataGridView.DataSource = view.StockHardware;
-                        dataGridView.Columns[0].Visible = false;
-                        dataGridView.Columns[1].Visible = false;
-                        dataGridView.Columns[2].Visible = false;
-                        dataGridView.Columns[3].AutoSizeMode =
-                       DataGridViewAutoSizeColumnMode.Fill;
-                    }
+                    StockViewModel view = APIClient.GetRequest<StockViewModel>("api/Stock/Get/" + id.Value);
+                    textBoxName.Text = view.StockName;
+                    dataGridView.DataSource = view.StockHardware;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].Visible = false;
+                    dataGridView.Columns[3].AutoSizeMode =
+                   DataGridViewAutoSizeColumnMode.Fill;
                 }
                 catch (Exception ex)
                 {
@@ -45,8 +36,7 @@ namespace SalePCView
                 }
             }
         }
-
-        private void buttonSave_Click_1(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text))
             {
@@ -58,7 +48,8 @@ namespace SalePCView
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new StockBindingModel
+                    APIClient.PostRequest<StockBindingModel,
+                    bool>("api/Stock/UpdElement", new StockBindingModel
                     {
                         Id = id.Value,
                         StockName = textBoxName.Text
@@ -66,7 +57,7 @@ namespace SalePCView
                 }
                 else
                 {
-                    service.AddElement(new StockBindingModel
+                    APIClient.PostRequest<StockBindingModel, bool>("api/Stock/AddElement", new StockBindingModel
                     {
                         StockName = textBoxName.Text
                     });
@@ -82,12 +73,10 @@ namespace SalePCView
                MessageBoxIcon.Error);
             }
         }
-        private void ButtonCancel_Click_1(object sender, EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
     }
-
 }

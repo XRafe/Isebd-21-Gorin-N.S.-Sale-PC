@@ -1,43 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using SalePCServiceDAL.BindingModels;
+﻿using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
-using Unity;
-
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SalePCView
 {
     public partial class FormPutOnStock : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IStockService serviceS;
-        private readonly IHardwareService serviceC;
-        private readonly IMainService serviceM;
-        public FormPutOnStock(IStockService serviceS, IHardwareService serviceC,
-       IMainService serviceM)
+
+        public FormPutOnStock()
         {
             InitializeComponent();
-            this.serviceS = serviceS;
-            this.serviceC = serviceC;
-            this.serviceM = serviceM;
         }
-
         private void FormPutOnStock_Load(object sender, EventArgs e)
         {
             try
             {
-                List<HardwareViewModel> listC = serviceC.GetList();
-                if (listC != null)
+                List<HardwareViewModel> listI = APIClient.GetRequest<List<HardwareViewModel>>("api/Hardware/GetList");
+                if (listI != null)
                 {
                     comboBoxHardware.DisplayMember = "HardwareName";
                     comboBoxHardware.ValueMember = "Id";
-                    comboBoxHardware.DataSource = listC;
+                    comboBoxHardware.DataSource = listI;
                     comboBoxHardware.SelectedItem = null;
                 }
-                List<StockViewModel> listS = serviceS.GetList();
+                List<StockViewModel> listS = APIClient.GetRequest<List<StockViewModel>>("api/Stock/GetList");
                 if (listS != null)
                 {
                     comboBoxStock.DisplayMember = "StockName";
@@ -52,7 +41,6 @@ namespace SalePCView
                MessageBoxIcon.Error);
             }
         }
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxCount.Text))
@@ -63,7 +51,7 @@ namespace SalePCView
             }
             if (comboBoxHardware.SelectedValue == null)
             {
-                MessageBox.Show("Выберите комплектующие", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите запчасть", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
@@ -75,7 +63,7 @@ namespace SalePCView
             }
             try
             {
-                serviceM.PutHardwareOnStock(new StockHardwareBindingModel
+                APIClient.PostRequest<StockHardwareBindingModel, bool>("api/Main/PutComponentOnStock", new StockHardwareBindingModel
                 {
                     HardwareId = Convert.ToInt32(comboBoxHardware.SelectedValue),
                     StockId = Convert.ToInt32(comboBoxStock.SelectedValue),
@@ -97,7 +85,5 @@ namespace SalePCView
             DialogResult = DialogResult.Cancel;
             Close();
         }
-
     }
-
 }

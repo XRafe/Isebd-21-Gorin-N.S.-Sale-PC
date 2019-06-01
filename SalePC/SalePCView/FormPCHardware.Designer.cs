@@ -1,6 +1,6 @@
 ﻿namespace SalePCView
 {
-    partial class FormSalePCHardware
+    partial class FormPCHardware
     {
         /// <summary>
         /// Required designer variable.
@@ -109,7 +109,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormSalePCHardware";
             this.Text = "Комплектующие";
-            this.Load += new System.EventHandler(this.FormSalePCHardware_Load);
+            this.Load += new System.EventHandler(this.FormPCHardware_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,36 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using SalePCServiceDAL.Interfaces;
+using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.ViewModels;
 using System.Windows.Forms;
-using Unity;
-
-
-
 
 namespace SalePCView
 {
     public partial class FormClients : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IClientService service;
-
-        public FormClients(IClientService service)
+        public FormClients()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormClients_Load(object sender, EventArgs e)
         {
             LoadData();
         }
-        
+
         private void LoadData()
         {
             try
             {
-                List<ClientViewModel> list = service.GetList();
+                List<ClientViewModel> list =
+                APIClient.GetRequest<List<ClientViewModel>>("api/Client/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -45,7 +37,6 @@ namespace SalePCView
                MessageBoxIcon.Error);
             }
         }
-
 
         private void buttonUpd_Click(object sender, EventArgs e)
         {
@@ -62,7 +53,8 @@ namespace SalePCView
                    Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<ClientBindingModel,
+                        bool>("api/Client/DelElement", new ClientBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -76,7 +68,7 @@ namespace SalePCView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClient>();
+            var form = new FormClient();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -87,8 +79,10 @@ namespace SalePCView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormClient>();
-                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                var form = new FormClient
+                {
+                    Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value)
+                };
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();

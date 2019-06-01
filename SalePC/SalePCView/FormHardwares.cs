@@ -3,20 +3,15 @@ using System.Collections.Generic;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System.Windows.Forms;
-using Unity;
+using SalePCServiceDAL.BindingModels;
 
 namespace SalePCView
 {
     public partial class FormHardwares : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IHardwareService service;
-
-        public FormHardwares(IHardwareService service)
+        public FormHardwares()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormHardwares_Load(object sender, EventArgs e)
         {
@@ -27,7 +22,8 @@ namespace SalePCView
         {
             try
             {
-                List<HardwareViewModel> list = service.GetList();
+                List<HardwareViewModel> list =
+                APIClient.GetRequest<List<HardwareViewModel>>("api/Hardware/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -59,7 +55,8 @@ namespace SalePCView
                    Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<HardwareBindingModel,
+                        bool>("api/Hardware/DelElement", new HardwareBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -73,7 +70,7 @@ namespace SalePCView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormHardware>();
+            var form = new FormHardware();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -84,8 +81,10 @@ namespace SalePCView
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormHardware>();
-                form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                var form = new FormHardware()
+                {
+                    Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value)
+                };
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();

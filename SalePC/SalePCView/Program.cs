@@ -1,12 +1,5 @@
-﻿using SalePCServiceDAL.Interfaces;
-using SalePCServiceImplementDataBase;
-using SalePCServiceImplementDataBase.Implementations;
-using System;
-using System.Data.Entity;
+﻿using System;
 using System.Windows.Forms;
-using Unity;
-using Unity.Lifetime;
-
 namespace SalePCView
 {
     static class Program
@@ -17,29 +10,10 @@ namespace SalePCView
         [STAThread]
         static void Main()
         {
-            var container = BuildUnityContainer();
+            APIClient.Connect();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(container.Resolve<FormMain>());
-        }
-        public static IUnityContainer BuildUnityContainer()
-        {
-            var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<DbContext, AbstractPCDbContext>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IClientService, ClientServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IHardwareService, HardwareServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IPCService, PCServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IStockService, StockServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainServiceDB>(new
-           HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IReportService, ReportServiceDB>(new
-           HierarchicalLifetimeManager());
-            return currentContainer;
+            Application.Run(new FormMain());
         }
     }
-}
+}

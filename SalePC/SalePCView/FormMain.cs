@@ -1,31 +1,23 @@
 ﻿using SalePCServiceDAL.BindingModels;
-using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
-
-
 namespace SalePCView
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IMainService service;
-        private readonly IReportService reportService;
-        public FormMain(IMainService service, IReportService reportService)
+        public FormMain()
         {
             InitializeComponent();
-            this.service = service;
-            this.reportService = reportService; 
+            LoadData();
         }
         private void LoadData()
         {
-        try
+            try
             {
-                List<OrderViewModel> list = service.GetList();
+                List<OrderViewModel> list =
+  APIClient.GetRequest<List<OrderViewModel>>("api/Main/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -45,22 +37,32 @@ namespace SalePCView
         }
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClients>();
+            var form = new FormClients();
             form.ShowDialog();
         }
         private void комплектующиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormHardwares>();
+            var form = new FormHardwares();
             form.ShowDialog();
         }
         private void компьютерыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormSalePCs>();
+            var form = new FormPCs();
+            form.ShowDialog();
+        }
+        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormStocks();
+            form.ShowDialog();
+        }
+        private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormPutOnStock();
             form.ShowDialog();
         }
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreateOrder>();
+            var form = new FormCreateOrder();
             form.ShowDialog();
             LoadData();
         }
@@ -71,7 +73,11 @@ namespace SalePCView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel,
+                   bool>("api/Main/TakeOrderInWork", new OrderBindingModel
+                   {
+                       Id = id
+                   });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -88,7 +94,11 @@ namespace SalePCView
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel,
+                   bool>("api/Main/FinishOrder", new OrderBindingModel
+                   {
+                       Id = id
+                   });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -96,79 +106,68 @@ namespace SalePCView
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 }
-            }
-        }
-        private void buttonPayOrder_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    service.PayOrder(new OrderBindingModel { Id = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
                 }
             }
-        }
-        private void buttonRef_Click(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void складыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormStocks>();
-            form.ShowDialog();
-        }
-
-        private void пополнитьСкладToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormPutOnStock>();
-            form.ShowDialog();
-        }
-
-
-
-        private void загруженностьСкладовToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormStocksLoad>();
-            form.ShowDialog();
-        }
-
-        private void прайсИзделийToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog
+            private void buttonPayOrder_Click(object sender, EventArgs e)
             {
-                Filter = "doc|*.doc|docx|*.docx"
-            };
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                try
+                if (dataGridView.SelectedRows.Count == 1)
                 {
-                    reportService.SavePCPrice(new ReportBindingModel
+                    int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                    try
                     {
-                        FileName = sfd.FileName
-                    });
-                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                        APIClient.PostRequest<OrderBindingModel, bool>("api/Main/.PayOrder",
+                       new OrderBindingModel
+                       {
+                           Id = id
+                       });
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                    }
                 }
             }
-        }
-
-        private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<FormClientOrders>();
+            private void buttonRef_Click(object sender, EventArgs e)
+            {
+                LoadData();
+            }
+            private void прайсИзделийToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                SaveFileDialog sfd = new SaveFileDialog
+                {
+                    Filter = "doc|*.doc|docx|*.docx"
+                };
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        APIClient.PostRequest<ReportBindingModel,
+                       bool>("api/Report/SaveProductPrice", new ReportBindingModel
+                       {
+                           FileName = sfd.FileName
+                       });
+                        MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                       MessageBoxIcon.Error);
+                    }
+                }
+            }
+            private void загруженностьСкладовToolStripMenuItem_Click(object sender, EventArgs
+           e)
+            {
+                var form = new FormStocksLoad();
             form.ShowDialog();
+            }
+            private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                var form = new FormClientOrders();
+                form.ShowDialog();
+            }
         }
     }
-}

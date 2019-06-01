@@ -1,27 +1,23 @@
-﻿using System;
-using SalePCServiceDAL.BindingModels;
+﻿using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
+using SalePCServiceDAL.ViewModels;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using Unity;
-
-
 namespace SalePCView
 {
     public partial class FormStocksLoad : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReportService service;
-        public FormStocksLoad(IReportService service)
+        public FormStocksLoad()
         {
             InitializeComponent();
-            this.service = service;
         }
+
         private void FormStocksLoad_Load(object sender, EventArgs e)
         {
             try
             {
-                var dict = service.GetStocksLoad();
+                List<StocksLoadViewModel> dict = APIClient.GetRequest<List<StocksLoadViewModel>>("api/Report/GetStocksLoad");
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
@@ -30,11 +26,9 @@ namespace SalePCView
                         dataGridView.Rows.Add(new object[] { elem.StockName, "", "" });
                         foreach (var listElem in elem.Hardwares)
                         {
-                            dataGridView.Rows.Add(new object[] { "", listElem.Item1,
-listElem.Item2 });
+                            dataGridView.Rows.Add(new object[] { "", listElem.Item1, listElem.Item2 });
                         }
-                        dataGridView.Rows.Add(new object[] { "Итого", "", elem.TotalCount
-});
+                        dataGridView.Rows.Add(new object[] { "Итого", "", elem.TotalCount });
                         dataGridView.Rows.Add(new object[] { });
                     }
                 }
@@ -55,7 +49,7 @@ listElem.Item2 });
             {
                 try
                 {
-                    service.SaveStocksLoad(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveStoksLoad", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });
