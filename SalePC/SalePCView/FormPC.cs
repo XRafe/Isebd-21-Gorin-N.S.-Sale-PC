@@ -132,7 +132,7 @@ namespace SalePCView
             }
             if (PCHardwares == null || PCHardwares.Count == 0)
             {
-                MessageBox.Show("Заполните ингредиенты", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Заполните комплектующие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
