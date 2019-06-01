@@ -82,7 +82,7 @@ namespace SalePCView
             }
             if (comboBoxSalePC.SelectedValue == null)
             {
-                MessageBox.Show("Выберите консерву", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show("Выберите комплектующие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
                 return;
             }
