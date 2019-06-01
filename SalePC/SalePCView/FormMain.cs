@@ -35,17 +35,17 @@ namespace SalePCView
                MessageBoxIcon.Error);
             }
         }
-        private void заказчикиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormClients();
             form.ShowDialog();
         }
-        private void ингредиентыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void комплектующиеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormHardwares();
             form.ShowDialog();
         }
-        private void консервыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void компьютерыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new FormPCs();
             form.ShowDialog();
