@@ -45,6 +45,7 @@
             this.прайсИзделийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.загруженностьСкладовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.заказыКлиентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -135,6 +136,7 @@
             this.комплектующиеToolStripMenuItem,
             this.компьютерыToolStripMenuItem,
             this.складыToolStripMenuItem});
+
             this.справочникToolStripMenuItem.Name = "справочникToolStripMenuItem";
             this.справочникToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.справочникToolStripMenuItem.Text = "Справочники";
@@ -143,6 +145,7 @@
             // 
             this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
             this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+
             this.клиентыToolStripMenuItem.Text = "Клиенты";
             this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.клиентыToolStripMenuItem_Click);
             // 
@@ -150,6 +153,7 @@
             // 
             this.комплектующиеToolStripMenuItem.Name = "комплектующиеToolStripMenuItem";
             this.комплектующиеToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+
             this.комплектующиеToolStripMenuItem.Text = "Комлектующие";
             this.комплектующиеToolStripMenuItem.Click += new System.EventHandler(this.комплектующиеToolStripMenuItem_Click);
             // 
@@ -173,6 +177,7 @@
             this.пополнитьСкладToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.пополнитьСкладToolStripMenuItem.Text = "Пополнить склад";
             this.пополнитьСкладToolStripMenuItem.Click += new System.EventHandler(this.пополнитьСкладToolStripMenuItem_Click);
+
             // 
             // отчётыToolStripMenuItem
             // 
