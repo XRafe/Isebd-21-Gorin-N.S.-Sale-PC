@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,6 +65,7 @@
     <Compile Include="Implementations\HardwareServiceDB.cs" />
     <Compile Include="Implementations\ImplementerServiceDB.cs" />
     <Compile Include="Implementations\MainServiceDB.cs" />
+    <Compile Include="Implementations\MessageInfoServiceDB.cs" />
     <Compile Include="Implementations\PCServiceDB.cs" />
     <Compile Include="Implementations\ReportServiceDB.cs" />
     <Compile Include="Implementations\StockServiceDB.cs" />
@@ -75,6 +77,10 @@
     <Compile Include="Migrations\201904251644020_Second.Designer.cs">
       <DependentUpon>201904251644020_Second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905311106235_ThreeMigration.cs" />
+    <Compile Include="Migrations\201905311106235_ThreeMigration.Designer.cs">
+      <DependentUpon>201905311106235_ThreeMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -84,7 +90,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="TIMCYR.TTF" />
   </ItemGroup>
@@ -104,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904251644020_Second.resx">
       <DependentUpon>201904251644020_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311106235_ThreeMigration.resx">
+      <DependentUpon>201905311106235_ThreeMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

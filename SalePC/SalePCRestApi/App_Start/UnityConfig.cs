@@ -58,6 +58,8 @@ namespace SalePCRestApi
            HierarchicalLifetimeManager());
             container.RegisterType<IImplementerService, ImplementerServiceDB>(new
            HierarchicalLifetimeManager());
+            container.RegisterType<IMessageInfoService, MessageInfoServiceDB>(new
+            HierarchicalLifetimeManager());
         }
     }
 }

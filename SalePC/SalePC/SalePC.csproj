@@ -51,6 +51,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Hardware.cs" />
     <Compile Include="Implementer.cs" />
+    <Compile Include="MessageInfo.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderStatus.cs" />
     <Compile Include="PC.cs" />
