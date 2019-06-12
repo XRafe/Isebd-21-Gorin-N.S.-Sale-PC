@@ -1,35 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SalePC;
 using SalePCServiceDAL.BindingModels;
 using SalePCServiceDAL.Interfaces;
 using SalePCServiceDAL.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
 
 
-namespace SalePCServiceImplementList
+namespace SalePCServiceImplementDataBase.Implementations
 {
-    public class ClientServiceList : IClientService
+    public class ClientServiceDB : IClientService
     {
-        private DataListSingleton source;
-        public ClientServiceList()
+        private AbstractPCDbContext context;
+        public ClientServiceDB(AbstractPCDbContext context)
         {
-            source = DataListSingleton.GetInstance();
+            this.context = context;
         }
         public List<ClientViewModel> GetList()
         {
-            List<ClientViewModel> result = source.Clients.Select(rec => new
-    ClientViewModel
+            List<ClientViewModel> result = context.Clients.Select(rec => new
+           ClientViewModel
             {
                 Id = rec.Id,
                 ClientFIO = rec.ClientFIO
             })
-     .ToList();
+            .ToList();
             return result;
         }
         public ClientViewModel GetElement(int id)
         {
-            Client element = source.Clients.FirstOrDefault(rec => rec.Id == id);
+            Client element = context.Clients.FirstOrDefault(rec => rec.Id == id);
             if (element != null)
             {
                 return new ClientViewModel
@@ -42,40 +42,41 @@ namespace SalePCServiceImplementList
         }
         public void AddElement(ClientBindingModel model)
         {
-            Client element = source.Clients.FirstOrDefault(rec => rec.ClientFIO ==
+            Client element = context.Clients.FirstOrDefault(rec => rec.ClientFIO ==
            model.ClientFIO);
             if (element != null)
             {
                 throw new Exception("Уже есть клиент с таким ФИО");
             }
-            int maxId = source.Clients.Count > 0 ? source.Clients.Max(rec => rec.Id) : 0;
-            source.Clients.Add(new Client
+            context.Clients.Add(new Client
             {
-                Id = maxId + 1,
                 ClientFIO = model.ClientFIO
             });
+            context.SaveChanges();
         }
         public void UpdElement(ClientBindingModel model)
         {
-            Client element = source.Clients.FirstOrDefault(rec => rec.ClientFIO ==
+            Client element = context.Clients.FirstOrDefault(rec => rec.ClientFIO ==
            model.ClientFIO && rec.Id != model.Id);
             if (element != null)
             {
                 throw new Exception("Уже есть клиент с таким ФИО");
             }
-            element = source.Clients.FirstOrDefault(rec => rec.Id == model.Id);
+            element = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
             if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
             element.ClientFIO = model.ClientFIO;
+            context.SaveChanges();
         }
         public void DelElement(int id)
         {
-            Client element = source.Clients.FirstOrDefault(rec => rec.Id == id);
+            Client element = context.Clients.FirstOrDefault(rec => rec.Id == id);
             if (element != null)
             {
-                source.Clients.Remove(element);
+                context.Clients.Remove(element);
+                context.SaveChanges();
             }
             else
             {

@@ -5,15 +5,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SalePC
 {
     /// <summary>
-    /// Компонент, требуемый для изготовления изделия
+    /// Хранилиище компонентов в магазине
     /// </summary>
-    public class Hardware
+    public class Stock
     {
         public int Id { get; set; }
         [Required]
-        public string HardwareName { get; set; }
-        [ForeignKey("HardwareId")]
+        public string StockName { get; set; }
+        [ForeignKey("StockId")]
         public virtual List<StockHardware> StockHardwares { get; set; }
-        public virtual List<PCHardwares> PCHardwares { get; set; }
     }
+
 }

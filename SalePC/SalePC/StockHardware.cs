@@ -3,16 +3,17 @@
 namespace SalePC
 {
     /// <summary>
-    /// Сколько компонентов, требуется при изготовлении изделия
+    /// Сколько компонентов хранится на складе
     /// </summary>
-    public class PCHardwares
+    public class StockHardware
     {
         public int Id { get; set; }
-        public int PCId { get; set; }
+        public int StockId { get; set; }
         public int HardwareId { get; set; }
         [Required]
         public int Count { get; set; }
         public virtual Hardware Hardware { get; set; }
         public virtual PC PC { get; set; }
+
     }
 }
