@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCServiceImplementList"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCView", "SalePCView\SalePCView.csproj", "{447917BB-AD9D-4764-84AB-1E90AACA0401}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCViewWPF", "SalePCView_WPF\SalePCViewWPF.csproj", "{3548FAA5-114E-4374-9992-790AD0AEEDF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalePCView_WPF", "SalePCView_WPF\SalePCView_WPF.csproj", "{3548FAA5-114E-4374-9992-790AD0AEEDF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

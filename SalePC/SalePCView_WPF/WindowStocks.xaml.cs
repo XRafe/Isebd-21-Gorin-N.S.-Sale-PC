@@ -9,23 +9,23 @@ using Unity;
 namespace SalePCView
 {
     /// <summary>
-    /// Логика взаимодействия для WindowClients.xaml
+    /// Логика взаимодействия для WindowStocks.xaml
     /// </summary>
-    public partial class WindowClients : Window
+    public partial class WindowStocks : Window
     {
         [Dependency]
         public IUnityContainer Container { get; set; }
 
-        private readonly IClientService service;
+        private readonly IStockService service;
 
-        public WindowClients(IClientService service)
+        public WindowStocks(IStockService service)
         {
             InitializeComponent();
-            Loaded += Windows_Load;
+            Loaded += WindowStocks_Load;
             this.service = service;
         }
 
-        private void Windows_Load(object sender, EventArgs e)
+        private void WindowStocks_Load(object sender, EventArgs e)
         {
             LoadData();
         }
@@ -34,12 +34,12 @@ namespace SalePCView
         {
             try
             {
-                List<ClientViewModel> list = service.GetList();
+                List<StockViewModel> list = service.GetList();
                 if (list != null)
                 {
-                    dataGridViewClients.ItemsSource = list;
-                    dataGridViewClients.Columns[0].Visibility = Visibility.Hidden;
-                    dataGridViewClients.Columns[1].Width = DataGridLength.Auto;
+                    dataGridViewStocks.ItemsSource = list;
+                    dataGridViewStocks.Columns[0].Visibility = Visibility.Hidden;
+                    dataGridViewStocks.Columns[1].Width = DataGridLength.Auto;
                 }
             }
             catch (Exception ex)
@@ -50,19 +50,17 @@ namespace SalePCView
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<WindowClient>();
+            var form = Container.Resolve<WindowStock>();
             if (form.ShowDialog() == true)
-            {
                 LoadData();
-            }
         }
 
         private void buttonUpd_Click(object sender, EventArgs e)
         {
-            if (dataGridViewClients.SelectedItem != null)
+            if (dataGridViewStocks.SelectedItem != null)
             {
-                var form = Container.Resolve<WindowClient>();
-                form.Id = ((ClientViewModel)dataGridViewClients.SelectedItem).Id;
+                var form = Container.Resolve<WindowStock>();
+                form.Id = ((StockViewModel)dataGridViewStocks.SelectedItem).Id;
                 if (form.ShowDialog() == true)
                 {
                     LoadData();
@@ -72,12 +70,12 @@ namespace SalePCView
 
         private void buttonDel_Click(object sender, EventArgs e)
         {
-            if (dataGridViewClients.SelectedItem != null)
+            if (dataGridViewStocks.SelectedItem != null)
             {
                 if (MessageBox.Show("Удалить запись?", "Внимание",
                     MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    int id = ((ClientViewModel)dataGridViewClients.SelectedItem).Id;
+                    int id = ((StockViewModel)dataGridViewStocks.SelectedItem).Id;
                     try
                     {
                         service.DelElement(id);
